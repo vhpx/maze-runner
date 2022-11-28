@@ -22,22 +22,20 @@ public class Maze {
     }
 
     public String go(String direction) {
-        if (!direction.equals("UP") &&
-                !direction.equals("DOWN") &&
-                !direction.equals("LEFT") &&
-                !direction.equals("RIGHT")) {
-            // invalid direction
-            steps++;
-            return "false";
-        }
         int currentRow = robotRow;
         int currentCol = robotCol;
-        
+
         switch (direction) {
             case "UP" -> currentRow--;
             case "DOWN" -> currentRow++;
             case "LEFT" -> currentCol--;
-            default -> currentCol++;
+            case "RIGHT" -> currentCol++;
+
+            default -> {
+                // Invalid direction
+                steps++;
+                return "false";
+            }
         }
 
         // check the next position
@@ -61,30 +59,5 @@ public class Maze {
 
     public static void main(String[] args) {
         (new Robot()).navigate();
-    }
-}
-
-class Robot {
-    // A very simple implementation
-    // where the robot just go randomly
-    public void navigate() {
-        Maze maze = new Maze();
-        String result = "";
-        while (!result.equals("win")) {
-            double rnd = Math.random();
-            if (rnd <= 0.25) {
-                System.out.println("UP");
-                result = maze.go("UP");
-            } else if (rnd <= 0.50) {
-                System.out.println("DOWN");
-                result = maze.go("DOWN");
-            } else if (rnd <= 0.75) {
-                System.out.println("LEFT");
-                result = maze.go("LEFT");
-            } else {
-                System.out.println("RIGHT");
-                result = maze.go("RIGHT");
-            }
-        }
     }
 }
