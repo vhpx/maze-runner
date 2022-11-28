@@ -32,9 +32,9 @@ public class Robot {
         newPos.move(dir);
 
         // Check if the robot can move to the given position
-        if (maze.markVisited(pos)) {
+        if (maze.markVisited(newPos)) {
             // Move the robot to the given position
-            this.pos.setPos(pos);
+            this.pos.setPos(newPos);
             moves++;
             return true;
         }

@@ -9,7 +9,7 @@ public class Maze {
 
     // * Maze configurations
     // Special properties of the maze
-    final float DENSITY = 0.2f;
+    final float DENSITY = 0.1f;
 
     final char WALL_SYMBOL = '.';
     final char PATH_SYMBOL = ' ';
@@ -55,6 +55,11 @@ public class Maze {
     }
 
     public void setObject(int x, int y, char object) {
+        // Don't allow the robot to change start or end positions
+        if (map[y].charAt(x) == START_SYMBOL || map[y].charAt(x) == END_SYMBOL) {
+            return;
+        }
+
         // Set the object at the given position
         map[y] = map[y].substring(0, x) + object + map[y].substring(x + 1);
     }
@@ -166,7 +171,8 @@ public class Maze {
     // Check if the position is valid
     public boolean canNavigate(Position pos) {
         // Check if the position is out of bounds
-        if (pos.getX() < 0 || pos.getX() >= cols || pos.getY() < 0 || pos.getY() >= rows) return false;
+        if (pos.getX() < 0 || pos.getX() >= cols || pos.getY() < 0 || pos.getY() >= rows)
+            return false;
 
         // Check if the position is a wall
         return map[pos.getY()].charAt(pos.getX()) != WALL_SYMBOL;
