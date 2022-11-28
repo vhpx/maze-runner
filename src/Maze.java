@@ -2,6 +2,7 @@ public class Maze {
     // Maze size
     int rows = 30;
     int cols = 150;
+    float density = 0.1f;
 
     // The maze is represented as a 2D array of Strings
     // Each string is a row of the maze
@@ -9,8 +10,6 @@ public class Maze {
 
     // * Maze configurations
     // Special properties of the maze
-    final float DENSITY = 0.1f;
-
     final char WALL_SYMBOL = '.';
     final char PATH_SYMBOL = ' ';
     final char START_SYMBOL = 'S';
@@ -35,6 +34,18 @@ public class Maze {
         randomize();
     }
 
+    public Maze(int rows, int cols, float density) {
+        // Set the maze size
+        setSize(rows, cols);
+
+        // Set the maze density
+        setDensity(density);
+
+        // Randomly generate the maze
+        // when the Maze object is created
+        randomize();
+    }
+
     public Maze(String[] map) {
         setMap(map);
     }
@@ -52,6 +63,10 @@ public class Maze {
 
     private void setMap(String[] map) {
         this.map = map;
+    }
+
+    private void setDensity(float density) {
+        this.density = density;
     }
 
     public void setObject(int x, int y, char object) {
@@ -141,7 +156,7 @@ public class Maze {
             String row = "";
             for (int j = 0; j < cols; j++) {
                 double rnd = Math.random();
-                if (rnd <= DENSITY) {
+                if (rnd <= density) {
                     row += WALL_SYMBOL;
                 } else {
                     row += PATH_SYMBOL;

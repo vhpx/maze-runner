@@ -3,7 +3,14 @@ import java.io.IOException;
 
 public class MazeGenerator {
     static private String generate() {
-        return new Maze().toString();
+        // randomize maze size
+        int rows = (int) (Math.random() * 26) + 5; // 5 - 30
+        int cols = (int) (Math.random() * 146) + 5; // 5 - 150
+
+        // randomize maze density
+        float density = (float) (Math.random() * 0.5) + 0.05f; // 0.05 - 0.55
+
+        return new Maze(rows, cols, density).toString();
     }
 
     static private String[] generate(int count) {
@@ -33,6 +40,6 @@ public class MazeGenerator {
     }
 
     public static void main(String[] args) {
-        generateFiles(10);
+        // generateFiles(1000);
     }
 }
