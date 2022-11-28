@@ -1,7 +1,7 @@
 public class Maze {
     // Maze size
-    int rows = 30;
-    int cols = 150;
+    int rows = 1000;
+    int cols = 1000;
 
     // The maze is represented as a 2D array of Strings
     // Each string is a row of the maze
@@ -164,7 +164,16 @@ public class Maze {
     // Print the maze
     public void print() {
         for (String row : map) {
-            System.out.println(row);
+            for (char c : row.toCharArray()) {
+                switch (c) {
+                    case WALL_SYMBOL -> System.out.print(TerminalColors.CYAN + c + TerminalColors.RESET);
+                    case START_SYMBOL -> System.out.print(TerminalColors.GREEN + c + TerminalColors.RESET);
+                    case END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case VISITED_SYMBOL -> System.out.print(TerminalColors.YELLOW + c + TerminalColors.RESET);
+                    default -> System.out.print(c);
+                }
+            }
+            System.out.println();
         }
     }
 
