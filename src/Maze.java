@@ -184,8 +184,7 @@ public class Maze {
             for (char c : row.toCharArray()) {
                 switch (c) {
                     case WALL_SYMBOL -> System.out.print(TerminalColors.CYAN + c + TerminalColors.RESET);
-                    case START_SYMBOL -> System.out.print(TerminalColors.GREEN + c + TerminalColors.RESET);
-                    case END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
                     case VISITED_SYMBOL -> System.out.print(TerminalColors.YELLOW + c + TerminalColors.RESET);
                     default -> System.out.print(c);
                 }
@@ -223,5 +222,15 @@ public class Maze {
 
     public boolean isDestination(int x, int y) {
         return isDestination(new Position(x, y));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (String row : map) {
+            sb.append(row).append("\n");
+        }
+
+        return sb.toString();
     }
 }

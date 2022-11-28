@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         Maze maze = new Maze();
-        Robot robot = new Robot();
+        Robot robot = new Robot(1, 1);
 
         // Place the robot in the maze
         // and print the maze
