@@ -1,7 +1,7 @@
 public class Maze {
     // Maze size
-    int rows = 1000;
-    int cols = 1000;
+    int rows = 30;
+    int cols = 150;
 
     // The maze is represented as a 2D array of Strings
     // Each string is a row of the maze
@@ -161,8 +161,25 @@ public class Maze {
         setDestination(pos);
     }
 
-    // Print the maze
-    public void print() {
+    public boolean placeRobot(Robot robot) {
+        Position pos = robot.getPos();
+        if (canNavigate(pos)) {
+            setStartPos(pos);
+            return true;
+        }
+
+        return false;
+    }
+
+    // Print the maze without colors
+    public void printNoColors() {
+        for (String row : map) {
+            System.out.println(row);
+        }
+    }
+
+    // Print the maze with colors
+    public void printWithColors() {
         for (String row : map) {
             for (char c : row.toCharArray()) {
                 switch (c) {
@@ -175,6 +192,14 @@ public class Maze {
             }
             System.out.println();
         }
+    }
+
+    // Print the maze
+    public void print(boolean colorized) {
+        if (colorized)
+            printWithColors();
+        else
+            printNoColors();
     }
 
     // Check if the position is valid

@@ -1,21 +1,21 @@
 public class Robot {
     // The robot's current position
-    Position pos = new Position(0, 0);
-    int moves = 0;
+    private final Position pos;
+    private int moves = 0;
 
     public Robot() {
         // The robot starts in the top left corner
-        pos.setPos(0, 0);
+        pos = new Position(0, 0);
     }
 
     public Robot(int x, int y) {
         // The robot starts at the given position
-        this.pos.setPos(x, y);
+        pos = new Position(x, y);
     }
 
     public Robot(Position pos) {
         // The robot starts at the given position
-        this.pos.setPos(pos);
+        this.pos = new Position(pos);
     }
 
     public int getMoves() {
@@ -58,11 +58,6 @@ public class Robot {
     }
 
     public void navigate(Maze maze) {
-        // Check if the robot can be placed in the maze
-        if (!maze.canNavigate(pos)) {
-            System.out.println("The robot cannot be placed in the maze!");
-            return;
-        }
 
         // Set the robot's starting position
         maze.setStartPos(pos);
