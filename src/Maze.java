@@ -47,7 +47,20 @@ public class Maze {
     }
 
     public Maze(String[] map) {
+        // Set the maze size
+        setSize(map.length, map[0].length());
+
+        // Set the maze map
         setMap(map);
+
+        // Find the destination
+        Position dest = getObjectPosition(END_SYMBOL);
+
+        // Make sure the destination is not null
+        assert dest != null;
+
+        // Set the destination
+        setDestination(dest);
     }
 
     public Maze(int rows, int cols, String[] map) {
@@ -79,6 +92,20 @@ public class Maze {
         map[y] = map[y].substring(0, x) + object + map[y].substring(x + 1);
     }
 
+    public Position getObjectPosition(char object) {
+        // Find the position of the given object
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                if (map[y].charAt(x) == object) {
+                    return new Position(x, y);
+                }
+            }
+        }
+
+        // Return null if the object is not found
+        return null;
+    }
+
     public void setDestination(int x, int y) {
         destination.setPos(x, y);
         setObject(x, y, END_SYMBOL);
@@ -95,6 +122,10 @@ public class Maze {
 
     public void setStartPos(Position pos) {
         setObject(pos.getX(), pos.getY(), START_SYMBOL);
+    }
+
+    public Position getStartPos() {
+        return getObjectPosition(START_SYMBOL);
     }
 
     public boolean markVisited(Position pos) {
@@ -168,22 +199,26 @@ public class Maze {
         // Set the maze boundary
         setMapBoundary();
 
-        // Set the destination
-        int randomX = (int) (Math.random() * (cols - 2)) + 1;
-        int randomY = (int) (Math.random() * (rows - 2)) + 1;
+        // randomly set the start and end positions
+        Position startPos = Position.random(1, cols - 2, 1, rows - 2);
+        Position endPos = Position.random(1, cols - 2, 1, rows - 2);
 
-        Position pos = new Position(randomX, randomY);
-        setDestination(pos);
-    }
-
-    public boolean placeRobot(Robot robot) {
-        Position pos = robot.getPos();
-        if (canNavigate(pos)) {
-            setStartPos(pos);
-            return true;
+        // Make sure the start and end positions are not the same
+        while (startPos.equals(endPos)) {
+            endPos = Position.random(1, cols - 2, 1, rows - 2);
         }
 
-        return false;
+        // Set the start and end positions
+        setStartPos(startPos);
+        setDestination(endPos);
+    }
+
+    public void placeRobot(Robot robot) {
+        // Get start position
+        Position pos = getObjectPosition(START_SYMBOL);
+
+        // Place the robot at the start position
+        robot.setPos(pos);
     }
 
     // Print the maze without colors
@@ -241,8 +276,16 @@ public class Maze {
 
     @Override
     public String toString() {
+        // replace all VISITED_SYMBOL with PATH_SYMBOL
+        String[] mapCopy = map.clone();
+        for (int i = 0; i < mapCopy.length; i++) {
+            mapCopy[i] = mapCopy[i].replace(VISITED_SYMBOL, PATH_SYMBOL);
+        }
+
+        // return the map as a string
         StringBuilder sb = new StringBuilder();
-        for (String row : map) {
+
+        for (String row : mapCopy) {
             sb.append(row).append("\n");
         }
 

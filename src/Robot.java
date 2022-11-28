@@ -26,6 +26,14 @@ public class Robot {
         return pos;
     }
 
+    public void setPos(int x, int y) {
+        this.pos.setPos(x, y);
+    }
+
+    public void setPos(Position pos) {
+        this.pos.setPos(pos);
+    }
+
     private boolean move(Position.Direction dir, Maze maze) {
         // Prepare the new position
         Position newPos = new Position(pos);
@@ -57,10 +65,9 @@ public class Robot {
         return move(Position.Direction.RIGHT, maze);
     }
 
-    public void navigate(Maze maze) {
-
-        // Set the robot's starting position
-        maze.setStartPos(pos);
+    public boolean navigate(Maze maze) {
+        Position startPos = maze.getStartPos();
+        setPos(startPos);
 
         while (!maze.isDestination(pos)) {
             double rnd = Math.random();
@@ -75,5 +82,11 @@ public class Robot {
                 moveRight(maze);
             }
         }
+
+         System.out.println("\nNumber of moves: " + getMoves());
+         System.out.println("Number of visited positions: " + maze.getVisitedCount());
+         System.out.println("Maze path:\n");
+         maze.print(Main.COLORIZED);
+        return true;
     }
 }

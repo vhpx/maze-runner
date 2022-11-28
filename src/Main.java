@@ -1,32 +1,43 @@
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Main {
     // Configure if the terminal should display colors or not
     // NOTE: Coloring might not be available on all terminals,
     // and it would take more time to process.
-    static boolean colorized = true;
+    public static boolean COLORIZED = true;
+
+    // Configure test folder to use
+    public static String TEST_FOLDER = "./resources/tests/";
+    public static int TEST_CASES = 1000;
+
+    public static void promptEnterKey() {
+        System.out.println("Press \"ENTER\" to continue...");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
-        Maze maze = new Maze();
-        Robot robot = new Robot(1, 1);
+        Maze[] mazes = MazeIO.loadMazes();
+        Robot robot = new Robot();
 
-        // Place the robot in the maze
-        // and print the maze
-        boolean validPlacement = maze.placeRobot(robot);
-        maze.print(colorized);
+        for (int i = 0; i < TEST_CASES; i++) {
+            // Load the current maze
+            Maze maze = mazes[i];
+            maze.print(COLORIZED);
 
-        // Check if the robot can be placed in the maze
-        if (!validPlacement) {
-            System.out.println(TerminalColors.RED + "\nThe robot cannot be placed in the maze!");
-            System.out.println("Error at position: " + robot.getPos().toString() + TerminalColors.RESET);
-            return;
+            // Place the robot in the maze
+            // and print the maze
+            maze.placeRobot(robot);
+
+            // The robot will navigate the maze
+            robot.navigate(maze);
+
+            // Wait until the user presses enter
+            promptEnterKey();
         }
-
-        // The robot will navigate the maze
-        robot.navigate(maze);
-
-        System.out.println("\nNumber of moves: " + robot.getMoves());
-        System.out.println("Number of visited positions: " + maze.getVisitedCount());
-        System.out.println("Maze path:\n");
-
-        maze.print(colorized);
     }
 }

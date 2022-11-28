@@ -37,6 +37,13 @@ public class Position {
         return y;
     }
 
+    public static Position random(int minX, int maxX, int minY, int maxY) {
+        int x = (int) (Math.random() * (maxX - minX)) + minX;
+        int y = (int) (Math.random() * (maxY - minY)) + minY;
+
+        return new Position(x, y);
+    }
+
     enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
