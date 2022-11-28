@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
     // Configure if the terminal should display colors or not
