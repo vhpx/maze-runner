@@ -1,23 +1,26 @@
 public class Maze {
     // Maze size
-    int rows = 30;
-    int cols = 150;
-    float density = 0.1f;
+    private int rows = 30;
+    private int cols = 150;
+    private float density = 0.1f;
 
     // The maze is represented as a 2D array of Strings
     // Each string is a row of the maze
-    String[] map = new String[rows];
+    private String[] map = new String[rows];
 
     // * Maze configurations
     // Special properties of the maze
-    final char WALL_SYMBOL = '.';
-    final char PATH_SYMBOL = ' ';
-    final char START_SYMBOL = 'S';
-    final char END_SYMBOL = 'X';
-    final char VISITED_SYMBOL = '+';
+    private final char WALL_SYMBOL = '.';
+    private final char PATH_SYMBOL = ' ';
+    private final char START_SYMBOL = 'S';
+    private final char END_SYMBOL = 'X';
+    private final char VISITED_SYMBOL = '+';
 
     // Maze destination
     Position destination = new Position(0, 0);
+
+    // Miscelaneous stats
+    private int visitedCells = 0;
 
     public Maze() {
         // Randomly generate the maze
@@ -131,10 +134,29 @@ public class Maze {
     public boolean markVisited(Position pos) {
         if (canNavigate(pos)) {
             setObject(pos.getX(), pos.getY(), VISITED_SYMBOL);
+            visitedCells++;
             return true;
         }
 
         return false;
+    }
+
+    public void resetVisited() {
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                if (map[y].charAt(x) == VISITED_SYMBOL) {
+                    setObject(x, y, PATH_SYMBOL);
+                }
+            }
+        }
+    }
+
+    public int getVisitedCount() {
+        return visitedCells;
+    }
+
+    public void resetVisitedCount() {
+        visitedCells = 0;
     }
 
     public Position getDestination() {
@@ -143,16 +165,6 @@ public class Maze {
 
     public String[] getMap() {
         return map;
-    }
-
-    public int getVisitedCount() {
-        int count = 0;
-        for (String row : map)
-            for (char c : row.toCharArray())
-                if (c == VISITED_SYMBOL)
-                    count++;
-
-        return count;
     }
 
     private void fillWall(int row) {
