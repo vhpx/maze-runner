@@ -10,15 +10,6 @@ public class Main {
     public static String TEST_FOLDER = "./resources/tests/";
     public static int TEST_CASES = 1000;
 
-    public static void promptEnterKey() {
-        System.out.println("Press \"ENTER\" to continue...");
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) {
         Maze[] mazes = MazeIO.loadMazes();
         Robot robot = new Robot();
@@ -36,7 +27,7 @@ public class Main {
             robot.navigate(maze);
 
             // Wait until the user presses enter
-            promptEnterKey();
+            Utility.waitForKey();
         }
     }
 }
