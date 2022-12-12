@@ -1,6 +1,6 @@
 public class Queue {
-    private Node head;
-    private Node tail;
+    private QueueNode head;
+    private QueueNode tail;
 
     public Queue() {
         head = null;
@@ -9,7 +9,7 @@ public class Queue {
 
     public void enqueue(Position position) {
         // Create a new node
-        Node node = new Node(position);
+        QueueNode node = new QueueNode(position);
 
         // If the queue is empty
         if (head == null) {
@@ -59,7 +59,7 @@ public class Queue {
 
     public void print() {
         // Print the queue
-        Node node = head;
+        QueueNode node = head;
         while (node != null) {
             System.out.print(node.position + " ");
             node = node.next;
@@ -77,17 +77,4 @@ public class Queue {
         // Return the position of the head
         return head.position;
     }
-}
-
-class Node {
-    // Each node contains a position
-    // and a reference to the next node
-    Position position;
-    Node next;
-
-    public Node(Position position) {
-        this.position = position;
-        this.next = null;
-    }
-
 }

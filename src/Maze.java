@@ -14,14 +14,14 @@ public class Maze {
     private final char PATH_SYMBOL = ' ';
     private final char START_SYMBOL = 'S';
     private final char END_SYMBOL = 'X';
-    private final char VISITED_SYMBOL = 'o';
+    private final char VISITED_SYMBOL = '~';
     private final char OPTIMAL_PATH_SYMBOL = 'x';
 
     // Maze destination
     Position destination = new Position(0, 0);
 
-    // Miscelaneous stats
-    private int visitedCells = 0;
+    // Miscellaneous stats
+    private int steps = 0;
 
     public Maze() {
         // Randomly generate the maze
@@ -132,51 +132,37 @@ public class Maze {
         return getObjectPosition(START_SYMBOL);
     }
 
-    public boolean markVisited(Position pos) {
+    public void markVisited(Position pos) {
         if (canNavigate(pos)) {
             setObject(pos.getX(), pos.getY(), VISITED_SYMBOL);
-            visitedCells++;
-            return true;
-        }
-
-        return false;
-    }
-
-    public void resetVisited() {
-        for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < cols; x++) {
-                if (map[y].charAt(x) == VISITED_SYMBOL) {
-                    setObject(x, y, PATH_SYMBOL);
-                }
-            }
+            steps++;
         }
     }
 
     public int getVisitedCount() {
-        return visitedCells;
+        int count = 0;
+
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                if (map[y].charAt(x) == VISITED_SYMBOL) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 
-    public void resetVisitedCount() {
-        visitedCells = 0;
+    public int getSteps() {
+        return steps;
     }
 
     public Position getDestination() {
         return destination;
     }
 
-    public String[] getMap() {
-        return map;
-    }
-
     private void fillWall(int row) {
-        // Fill a row with a character
-        String s = "";
-        for (int i = 0; i < cols; i++) {
-            s += WALL_SYMBOL;
-        }
-
-        // Replace the row with the new string
-        map[row] = s;
+        map[row] = String.valueOf(WALL_SYMBOL).repeat(Math.max(0, cols));
     }
 
     private void setMapBoundary() {
@@ -197,14 +183,10 @@ public class Maze {
     private void randomize() {
         // Generate the maze
         for (int i = 0; i < rows; i++) {
-            String row = "";
+            StringBuilder row = new StringBuilder();
             for (int j = 0; j < cols; j++) {
                 double rnd = Math.random();
-                if (rnd <= density) {
-                    row += WALL_SYMBOL;
-                } else {
-                    row += PATH_SYMBOL;
-                }
+                row.append(rnd <= density ? WALL_SYMBOL : PATH_SYMBOL);
             }
             map[i] = row.toString();
         }
@@ -243,12 +225,44 @@ public class Maze {
 
     // Print the maze with colors
     public void printWithColors() {
+        System.out.println("Original maze:");
         for (String row : map) {
             for (char c : row.toCharArray()) {
                 switch (c) {
-                    case WALL_SYMBOL -> System.out.print(TerminalColors.CYAN + c + TerminalColors.RESET);
+                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
                     case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
-                    case VISITED_SYMBOL -> System.out.print(TerminalColors.YELLOW + c + TerminalColors.RESET);
+                    case VISITED_SYMBOL, OPTIMAL_PATH_SYMBOL -> System.out.print(PATH_SYMBOL);
+                    default -> System.out.print(c);
+                }
+            }
+            System.out.println();
+        }
+
+        System.out.println("\nMaze coverage with optimal path:");
+        for (String row : map) {
+            for (char c : row.toCharArray()) {
+                switch (c) {
+                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case VISITED_SYMBOL -> System.out.print(TerminalColors.CYAN + c + TerminalColors.RESET);
+                    case OPTIMAL_PATH_SYMBOL ->
+                        System.out.print(TerminalColors.GREEN_BOLD_BRIGHT + c + TerminalColors.RESET);
+                    default -> System.out.print(c);
+                }
+            }
+            System.out.println();
+        }
+
+        System.out.println("\nMaze with optimal path:");
+
+        for (String row : map) {
+            for (char c : row.toCharArray()) {
+                switch (c) {
+                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case VISITED_SYMBOL -> System.out.print(PATH_SYMBOL);
+                    case OPTIMAL_PATH_SYMBOL ->
+                        System.out.print(TerminalColors.GREEN_BOLD_BRIGHT + c + TerminalColors.RESET);
                     default -> System.out.print(c);
                 }
             }
@@ -328,22 +342,4 @@ public class Maze {
     public void markPosition(Position pos) {
         setObject(pos.getX(), pos.getY(), OPTIMAL_PATH_SYMBOL);
     }
-
-    // print the maze with the path marked
-    public void printPath() {
-        for (String row : map) {
-            for (char c : row.toCharArray()) {
-                switch (c) {
-                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
-                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
-                    case VISITED_SYMBOL -> System.out.print(TerminalColors.YELLOW + c + TerminalColors.RESET);
-                    case OPTIMAL_PATH_SYMBOL ->
-                        System.out.print(TerminalColors.GREEN_BOLD_BRIGHT + c + TerminalColors.RESET);
-                    default -> System.out.print(c);
-                }
-            }
-            System.out.println();
-        }
-    }
-
 }

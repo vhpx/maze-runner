@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class Main {
     // Configure if the terminal should display colors or not
     // NOTE: Coloring might not be available on all terminals,
@@ -12,20 +10,26 @@ public class Main {
 
     public static void main(String[] args) {
         Maze[] mazes = MazeIO.loadMazes();
-        Robot robot = new Robot();
 
+        Robot bfsRobot = new Robot();
+        Robot dfsRobot = new Robot();
 
         for (int i = 0; i < TEST_CASES; i++) {
             // Load the current maze
             Maze maze = mazes[i];
-            maze.print(COLORIZED);
 
             // Place the robot in the maze
             // and print the maze
-            maze.placeRobot(robot);
+            maze.placeRobot(bfsRobot);
+            maze.placeRobot(dfsRobot);
 
             // The robot will navigate the maze
-            robot.navigate(maze);
+            // using the BFS algorithm
+            bfsRobot.navigate(maze, true);
+
+            // The robot will navigate the maze
+            // using the DFS algorithm
+            dfsRobot.navigate(maze, false);
 
             // Wait until the user presses enter
             Utility.waitForKey();

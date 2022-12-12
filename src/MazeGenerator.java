@@ -19,7 +19,7 @@ public class MazeGenerator {
             maze.placeRobot(robot);
 
             // navigate maze
-            if (robot.navigate(maze))
+            if (robot.navigate(maze, true))
                 return maze.toString();
         } while (true);
     }
