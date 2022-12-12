@@ -65,7 +65,7 @@ public class Robot {
         return move(Position.Direction.RIGHT, maze);
     }
 
-    public boolean navigate(Maze maze) {
+    public boolean navigateRandom(Maze maze) {
         Position startPos = maze.getStartPos();
         setPos(startPos);
 
@@ -83,10 +83,76 @@ public class Robot {
             }
         }
 
-         System.out.println("\nNumber of moves: " + getMoves());
-         System.out.println("Number of visited positions: " + maze.getVisitedCount());
-         System.out.println("Maze path:\n");
-         maze.print(Main.COLORIZED);
+        System.out.println("\nNumber of moves: " + getMoves());
+        System.out.println("Number of visited positions: " + maze.getVisitedCount());
+        System.out.println("Maze path:\n");
+        maze.print(Main.COLORIZED);
         return true;
+    }
+
+    public boolean navigateBFS(Maze maze) {
+        // find shortest path to the destination and store in prev array
+        Position[][] prev = findPath(maze);
+
+        // reconstruct the shortest path to the destination
+        reconstructPath(maze, prev);
+
+        return true;
+    }
+
+    public Position[][] findPath(Maze maze) {
+        Position startPos = maze.getStartPos();
+
+        Queue queue = new Queue();
+        queue.enqueue(startPos);
+
+        boolean[][] visited = new boolean[maze.getCols()][maze.getRows()];
+        Position[][] prev = new Position[maze.getCols()][maze.getRows()];
+
+        while (!queue.isEmpty() && !maze.isDestination(queue.peek())) {
+            Position currentPos = queue.dequeue();
+            maze.markVisited(currentPos);
+
+            int[] dr = { -1, 1, 0, 0 };
+            int[] dc = { 0, 0, -1, 1 };
+
+            for (int i = 0; i < 4; i++) {
+                Position nextPos = new Position(currentPos.getX() + dr[i], currentPos.getY() + dc[i]);
+                if (!maze.canNavigate(nextPos) || visited[nextPos.getX()][nextPos.getY()])
+                    continue;
+
+                queue.enqueue(nextPos);
+                visited[nextPos.getX()][nextPos.getY()] = true;
+                prev[nextPos.getX()][nextPos.getY()] = currentPos;
+            }
+        }
+
+        return prev;
+    }
+
+    public void reconstructPath(Maze maze, Position[][] prev) {
+        // mark all the prev positions
+
+        Position currentPos = maze.getDestination();
+        // markPath of currentPos
+        maze.markPosition(currentPos);
+        int steps = 0;
+
+        // while currentPos is not the start position
+        while (!currentPos.equals(maze.getStartPos())) {
+            // set currentPos to prev of currentPos
+            currentPos = prev[currentPos.getX()][currentPos.getY()];
+            steps++;
+            maze.markPosition(currentPos);
+        }
+
+        System.out.println("\nNumber of moves: " + steps);
+        System.out.println("Maze path:\n");
+        // print the maze with the shortest path
+        maze.printPath();
+    }
+
+    public boolean navigate(Maze maze) {
+        return navigateBFS(maze);
     }
 }
