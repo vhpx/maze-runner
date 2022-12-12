@@ -23,6 +23,7 @@ public class Main {
         Maze[] mazes = MazeIO.loadMazes();
         Robot robot = new Robot();
 
+
         for (int i = 0; i < TEST_CASES; i++) {
             // Load the current maze
             Maze maze = mazes[i];

@@ -14,7 +14,8 @@ public class Maze {
     private final char PATH_SYMBOL = ' ';
     private final char START_SYMBOL = 'S';
     private final char END_SYMBOL = 'X';
-    private final char VISITED_SYMBOL = '+';
+    private final char VISITED_SYMBOL = 'o';
+    private final char OPTIMAL_PATH_SYMBOL = 'x';
 
     // Maze destination
     Position destination = new Position(0, 0);
@@ -303,4 +304,46 @@ public class Maze {
 
         return sb.toString();
     }
+
+    // check if a position is visited or not
+    public boolean isVisited(Position pos) {
+        return map[pos.getY()].charAt(pos.getX()) == VISITED_SYMBOL;
+    }
+
+    // check if a position is wall or not
+    public boolean isWall(Position pos) {
+        return map[pos.getY()].charAt(pos.getX()) == WALL_SYMBOL;
+    }
+
+    // get rows and columns
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    // mark the path
+    public void markPosition(Position pos) {
+        setObject(pos.getX(), pos.getY(), OPTIMAL_PATH_SYMBOL);
+    }
+
+    // print the maze with the path marked
+    public void printPath() {
+        for (String row : map) {
+            for (char c : row.toCharArray()) {
+                switch (c) {
+                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case VISITED_SYMBOL -> System.out.print(TerminalColors.YELLOW + c + TerminalColors.RESET);
+                    case OPTIMAL_PATH_SYMBOL ->
+                        System.out.print(TerminalColors.GREEN_BOLD_BRIGHT + c + TerminalColors.RESET);
+                    default -> System.out.print(c);
+                }
+            }
+            System.out.println();
+        }
+    }
+
 }
