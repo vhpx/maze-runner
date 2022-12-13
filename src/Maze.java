@@ -135,7 +135,6 @@ public class Maze {
     public void markVisited(Position pos) {
         if (canNavigate(pos)) {
             setObject(pos.getX(), pos.getY(), VISITED_SYMBOL);
-            steps++;
         }
     }
 
@@ -144,7 +143,7 @@ public class Maze {
 
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
-                if (map[y].charAt(x) == VISITED_SYMBOL) {
+                if (map[y].charAt(x) == VISITED_SYMBOL || map[y].charAt(x) == OPTIMAL_PATH_SYMBOL) {
                     count++;
                 }
             }
@@ -155,6 +154,10 @@ public class Maze {
 
     public int getSteps() {
         return steps;
+    }
+
+    public void resetSteps() {
+        steps = 0;
     }
 
     public Position getDestination() {
@@ -280,6 +283,8 @@ public class Maze {
 
     // Check if the position is valid
     public boolean canNavigate(Position pos) {
+        steps++;
+
         // Check if the position is out of bounds
         if (pos.getX() < 0 || pos.getX() >= cols || pos.getY() < 0 || pos.getY() >= rows)
             return false;

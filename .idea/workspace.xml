@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b15225-65df-4cbc-ade6-ae9782cf4177" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/QueueNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Stack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StackNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/tests/maze_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/tests/maze_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Queue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Robot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +82,8 @@
       <workItem from="1669629082166" duration="19000" />
       <workItem from="1670776525671" duration="1399000" />
       <workItem from="1670849044072" duration="1113000" />
-      <workItem from="1670850265188" duration="1126000" />
+      <workItem from="1670850265188" duration="1333000" />
+      <workItem from="1670899385964" duration="1447000" />
     </task>
     <servers />
   </component>

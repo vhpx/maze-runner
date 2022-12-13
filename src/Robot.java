@@ -136,6 +136,7 @@ public class Robot {
     }
 
     public boolean navigate(Maze maze, boolean useBFS) {
+        maze.resetSteps();
         if (useBFS)
             return navigateBFS(maze);
         else
