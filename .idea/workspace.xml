@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b15225-65df-4cbc-ade6-ae9782cf4177" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/classes/common/LinkedList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/common/Stack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/maze/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/robot/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/common/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/common/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Queue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/ColorHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/maze/ColorHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/DirectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/robot/DirectionHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/MazeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/maze/MazeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/common/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/maze/MazeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/maze/MazeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/robot/Robot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +88,7 @@
       <workItem from="1670850265188" duration="1333000" />
       <workItem from="1670899385964" duration="3055000" />
       <workItem from="1671074889094" duration="43000" />
-      <workItem from="1671074947179" duration="11374000" />
+      <workItem from="1671074947179" duration="15014000" />
     </task>
     <servers />
   </component>

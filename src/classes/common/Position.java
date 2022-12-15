@@ -3,8 +3,7 @@ package classes.common;
 import enums.Direction;
 
 public class Position {
-    public static final Position ORIGIN = new Position(0, 0);
-    private int x = 0, y = 0;
+    private int x, y;
 
     public Position(int x, int y) {
         this.x = x;
@@ -16,22 +15,8 @@ public class Position {
         this.y = pos.y;
     }
 
-    public void setPos(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void setPos(Position pos) {
-        this.x = pos.x;
-        this.y = pos.y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+    public static Position copy(Position pos) {
+        return new Position(pos);
     }
 
     public int getX() {
@@ -50,26 +35,6 @@ public class Position {
             case RIGHT -> x++;
         }
 
-        return this;
-    }
-
-    public Position moveUp() {
-        move(Direction.UP);
-        return this;
-    }
-
-    public Position moveDown() {
-        move(Direction.DOWN);
-        return this;
-    }
-
-    public Position moveLeft() {
-        move(Direction.LEFT);
-        return this;
-    }
-
-    public Position moveRight() {
-        move(Direction.RIGHT);
         return this;
     }
 
