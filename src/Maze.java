@@ -26,7 +26,7 @@ public class Maze {
     public Maze() {
         // Randomly generate the maze
         // when the Maze object is created
-        randomize();
+//        randomize();
     }
 
     public Maze(int rows, int cols) {
@@ -35,7 +35,7 @@ public class Maze {
 
         // Randomly generate the maze
         // when the Maze object is created
-        randomize();
+//        randomize();
     }
 
     public Maze(int rows, int cols, float density) {
@@ -47,7 +47,7 @@ public class Maze {
 
         // Randomly generate the maze
         // when the Maze object is created
-        randomize();
+//        randomize();
     }
 
     public Maze(String[] map) {
@@ -183,33 +183,33 @@ public class Maze {
     }
 
     // Randomly generate the maze
-    private void randomize() {
-        // Generate the maze
-        for (int i = 0; i < rows; i++) {
-            StringBuilder row = new StringBuilder();
-            for (int j = 0; j < cols; j++) {
-                double rnd = Math.random();
-                row.append(rnd <= density ? WALL_SYMBOL : PATH_SYMBOL);
-            }
-            map[i] = row.toString();
-        }
-
-        // Set the maze boundary
-        setMapBoundary();
-
-        // randomly set the start and end positions
-        Position startPos = Position.random(1, cols - 2, 1, rows - 2);
-        Position endPos = Position.random(1, cols - 2, 1, rows - 2);
-
-        // Make sure the start and end positions are not the same
-        while (startPos.equals(endPos)) {
-            endPos = Position.random(1, cols - 2, 1, rows - 2);
-        }
-
-        // Set the start and end positions
-        setStartPos(startPos);
-        setDestination(endPos);
-    }
+//    private void randomize() {
+//        // Generate the maze
+//        for (int i = 0; i < rows; i++) {
+//            StringBuilder row = new StringBuilder();
+//            for (int j = 0; j < cols; j++) {
+//                double rnd = Math.random();
+//                row.append(rnd <= density ? WALL_SYMBOL : PATH_SYMBOL);
+//            }
+//            map[i] = row.toString();
+//        }
+//
+//        // Set the maze boundary
+//        setMapBoundary();
+//
+//        // randomly set the start and end positions
+//        Position startPos = Position.random(1, cols - 2, 1, rows - 2);
+//        Position endPos = Position.random(1, cols - 2, 1, rows - 2);
+//
+//        // Make sure the start and end positions are not the same
+//        while (startPos.equals(endPos)) {
+//            endPos = Position.random(1, cols - 2, 1, rows - 2);
+//        }
+//
+//        // Set the start and end positions
+//        setStartPos(startPos);
+//        setDestination(endPos);
+//    }
 
     public void placeRobot(Robot robot) {
         // Get start position
@@ -257,7 +257,6 @@ public class Maze {
         }
 
         System.out.println("\nMaze with optimal path:");
-
         for (String row : map) {
             for (char c : row.toCharArray()) {
                 switch (c) {

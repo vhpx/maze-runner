@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b15225-65df-4cbc-ade6-ae9782cf4177" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DirectionHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MazeHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OriginalMaze.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OriginalRobot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/tests/maze_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/tests/maze_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,14 +64,30 @@
       <recent name="C:\Users\phucv\Documents\GitHub\maze-runner\resources" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.OriginalMaze (1)">
+    <configuration name="OriginalMaze (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="OriginalMaze" />
+      <module name="maze-runner" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OriginalMaze" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="maze-runner" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.OriginalMaze" />
+      <item itemvalue="Application.OriginalMaze (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.OriginalMaze (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,7 +104,9 @@
       <workItem from="1670776525671" duration="1399000" />
       <workItem from="1670849044072" duration="1113000" />
       <workItem from="1670850265188" duration="1333000" />
-      <workItem from="1670899385964" duration="1447000" />
+      <workItem from="1670899385964" duration="3055000" />
+      <workItem from="1671074889094" duration="43000" />
+      <workItem from="1671074947179" duration="5174000" />
     </task>
     <servers />
   </component>

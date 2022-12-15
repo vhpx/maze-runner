@@ -1,4 +1,9 @@
+enum Direction {
+    UP, DOWN, LEFT, RIGHT
+}
+
 public class Position {
+    public static final Position ORIGIN = new Position(0, 0);
     private int x = 0, y = 0;
 
     public Position(int x, int y) {
@@ -37,40 +42,35 @@ public class Position {
         return y;
     }
 
-    public static Position random(int minX, int maxX, int minY, int maxY) {
-        int x = (int) (Math.random() * (maxX - minX)) + minX;
-        int y = (int) (Math.random() * (maxY - minY)) + minY;
-
-        return new Position(x, y);
-    }
-
-    enum Direction {
-        UP, DOWN, LEFT, RIGHT
-    }
-
-    public void move(Direction dir) {
+    public Position move(Direction dir) {
         switch (dir) {
             case UP -> y--;
             case DOWN -> y++;
             case LEFT -> x--;
             case RIGHT -> x++;
         }
+
+        return this;
     }
 
-    public void moveUp() {
+    public Position moveUp() {
         move(Direction.UP);
+        return this;
     }
 
-    public void moveDown() {
+    public Position moveDown() {
         move(Direction.DOWN);
+        return this;
     }
 
-    public void moveLeft() {
+    public Position moveLeft() {
         move(Direction.LEFT);
+        return this;
     }
 
-    public void moveRight() {
+    public Position moveRight() {
         move(Direction.RIGHT);
+        return this;
     }
 
     @Override
