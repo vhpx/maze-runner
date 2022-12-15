@@ -5,28 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b15225-65df-4cbc-ade6-ae9782cf4177" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/classes/common/Queue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/Algorithm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/Direction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/common/LinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/common/Stack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DirectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/DirectionHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LinkedList.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Maze.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MazeHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeIO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OriginalMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OriginalRobot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Queue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QueueNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Robot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Stack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StackNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TerminalColors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ColorHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utility.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/maze/Maze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/robot/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/common/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/common/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/common/Queue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/ColorHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/maze/ColorHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/DirectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/robot/DirectionHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/MazeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/maze/MazeHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -106,7 +96,7 @@
       <workItem from="1670850265188" duration="1333000" />
       <workItem from="1670899385964" duration="3055000" />
       <workItem from="1671074889094" duration="43000" />
-      <workItem from="1671074947179" duration="6629000" />
+      <workItem from="1671074947179" duration="11374000" />
     </task>
     <servers />
   </component>

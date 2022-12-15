@@ -1,7 +1,7 @@
-package helpers;
+package classes.robot;
 
 import enums.Direction;
-import classes.Position;
+import classes.common.Position;
 
 public class DirectionHelper {
     public static String toString(Direction dir) {

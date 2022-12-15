@@ -1,7 +1,5 @@
 package classes.common;
 
-import classes.Position;
-
 public class Node {
     private Position data;
     private Node next;
@@ -9,6 +7,11 @@ public class Node {
     public Node(Position data) {
         this.data = data;
         this.next = null;
+    }
+
+    public Node(Position data, Node next) {
+        this.data = data;
+        this.next = next;
     }
 
     public Position getData() {

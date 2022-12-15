@@ -1,9 +1,12 @@
-package classes;
+package classes.robot;
 
+import classes.common.Stack;
+import classes.common.Node;
+import classes.maze.Maze;
+import classes.common.Position;
 import classes.common.Queue;
 import enums.Algorithm;
 import enums.Direction;
-import helpers.DirectionHelper;
 
 public class Robot {
     // Original robot position
@@ -11,11 +14,11 @@ public class Robot {
 
     // Maximum size of the maze width or height,
     // depending on which is larger
-    private final int MAX_SIZE = 1000;
+    private final int MAX_SIZE = 7;
 
     // Boundary for each row, taking into account the walls,
     // and MAX_SIZE to navigate in any direction.
-    private final int BOUNDARY_LIMIT = MAX_SIZE * 2 - 1;
+    private final int BOUNDARY_LIMIT = MAX_SIZE * 2 + 1;
 
     // Save visited cells to avoid revisiting them
     boolean[][] visited = new boolean[BOUNDARY_LIMIT][BOUNDARY_LIMIT];
@@ -25,6 +28,9 @@ public class Robot {
 
     // Memoize the previous cell in the shortest path
     Position[][] prev = new Position[BOUNDARY_LIMIT][BOUNDARY_LIMIT];
+
+    // Store the optimal path
+    Stack optimalPath = new Stack();
 
     public void navigate() {
         navigate(Algorithm.BFS);
@@ -90,48 +96,65 @@ public class Robot {
                 Position nextPos = (new Position(currentPos)).move(dir);
                 String dirStr = DirectionHelper.toString(dir);
 
-                boolean visitedBefore = visited[nextPos.getX() + 25][nextPos.getY() + 25];
+                int newX = nextPos.getX() + MAX_SIZE;
+                int newY = nextPos.getY() + MAX_SIZE;
 
-                if (visitedBefore)
+                if (newX < 0 || newX >= BOUNDARY_LIMIT || newY < 0 || newY >= BOUNDARY_LIMIT)
                     continue;
 
+                boolean visitedBefore = visited[newX][newY];
+
+                if (visitedBefore) continue;
+
                 result = maze.go(dirStr);
-                visited[nextPos.getX() + 25][nextPos.getY() + 25] = true;
+                visited[newX][newY] = true;
 
                 boolean isEnd = result.equals("win");
 
-                if (isEnd)
-                    break;
+                if (isEnd) break;
 
                 boolean cannotGo = result.equals("false");
 
-                if (cannotGo)
-                    continue;
+                if (cannotGo) continue;
 
                 queue.enqueue(nextPos);
-                prev[nextPos.getX() + 25][nextPos.getY() + 25] = currentPos;
-//                System.out.println(dirStr);
+                prev[newX][newY] = currentPos;
             }
         }
 
-        int leastMoves = reconstructPath(prev, queue.peek());
-        System.out.println("The BFS classes.Algorithm found a path of length " + leastMoves);
+        optimalPath = reconstructPath(prev, queue.peek());
     }
 
-    private int reconstructPath(Position[][] prev, Position endPos) {
-        Position currentPos = endPos;
-        int moves = 0;
+    private Stack reconstructPath(Position[][] prev, Position endPos) {
+        Stack path = new Stack();
+        Node currentNode = new Node(endPos);
 
-        while (!currentPos.equals(pos)) {
-            Position prevPos = prev[currentPos.getX() + 25][currentPos.getY() + 25];
-            Direction dir = DirectionHelper.getDirection(prevPos, currentPos);
-            String dirStr = DirectionHelper.toString(dir);
-            System.out.println(dirStr);
-            currentPos = prevPos;
-            moves++;
+        while (!currentNode.getData().equals(pos)) {
+            Position currentPos = currentNode.getData();
+
+            int newX = currentPos.getX() + MAX_SIZE;
+            int newY = currentPos.getY() + MAX_SIZE;
+
+            Position prevPos = prev[newX][newY];
+            Node prevNode = new Node(prevPos);
+
+            path.push(prevNode);
+            currentNode = prevNode;
         }
 
-        return moves;
+        return path;
+    }
+
+    public boolean[][] getVisited() {
+        return visited;
+    }
+
+    public int getMaxSize() {
+        return MAX_SIZE;
+    }
+
+    public Stack getOptimalPath() {
+        return optimalPath;
     }
 
     private void clearData() {

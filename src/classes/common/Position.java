@@ -1,4 +1,4 @@
-package classes;
+package classes.common;
 
 import enums.Direction;
 

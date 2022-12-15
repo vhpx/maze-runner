@@ -1,6 +1,7 @@
 package classes.common;
 
-import classes.Position;
+import classes.common.Position;
+import classes.common.Node;
 
 public class Queue {
     private Node head;

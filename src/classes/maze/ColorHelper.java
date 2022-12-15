@@ -1,4 +1,4 @@
-package helpers;// Referenced from
+package classes.maze;// Referenced from
 // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 
 // DISCLAIMER: This code snippet is only used for appearance purposes,

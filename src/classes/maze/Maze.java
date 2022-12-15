@@ -1,19 +1,19 @@
-package classes;
+package classes.maze;
 
 public class Maze {
     // Maze dimensions
     int rows;
 
     // Robot position
-    public int robotX;
-    public int robotY;
+    int robotX;
+    int robotY;
 
     // Number of steps taken by the robot
     int steps = 0;
 
     // The maze is represented as a 2D array of Strings
     // Each string is a row of the maze
-    public String[] map;
+    String[] map;
 
     public Maze() {
         // rows = 21;
