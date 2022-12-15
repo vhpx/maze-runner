@@ -9,22 +9,18 @@ import enums.Algorithm;
 import enums.Direction;
 
 public class Robot {
-    // Original robot position
-    private final Position pos = Position.ORIGIN;
-
-    // Maximum size of the maze width or height,
-    // depending on which is larger
+    // Maximum size of the maze (width or height)
     private final int MAX_SIZE = 7;
 
     // Boundary for each row, taking into account the walls,
     // and MAX_SIZE to navigate in any direction.
-    private final int BOUNDARY_LIMIT = MAX_SIZE * 2 + 1;
+    private final int BOUNDARY_LIMIT = (MAX_SIZE - 2) * 2 - 1;
+
+    // Original robot position
+    private Position pos = new Position(MAX_SIZE / 2, MAX_SIZE / 2);
 
     // Save visited cells to avoid revisiting them
     boolean[][] visited = new boolean[BOUNDARY_LIMIT][BOUNDARY_LIMIT];
-
-    // Memoize the shortest path to each cell
-    int[][] distance = new int[BOUNDARY_LIMIT][BOUNDARY_LIMIT];
 
     // Memoize the previous cell in the shortest path
     Position[][] prev = new Position[BOUNDARY_LIMIT][BOUNDARY_LIMIT];
@@ -33,7 +29,7 @@ public class Robot {
     Stack optimalPath = new Stack();
 
     public void navigate() {
-        navigate(Algorithm.BFS);
+        navigate(Algorithm.DFS);
     }
 
     public void navigate(Algorithm algorithm) {
@@ -62,19 +58,11 @@ public class Robot {
 
         switch (algorithm) {
             case BFS:
-                navigateBFS(maze);
+                // navigateBFS(maze);
                 break;
 
             case DFS:
-//                navigateDFS(maze);
-                break;
-
-            case DIJKSTRA:
-//                navigateDijkstra(maze);
-                break;
-
-            case A_STAR:
-//                navigateAStar(maze);
+                navigateDFS(maze);
                 break;
 
             default:
@@ -83,66 +71,109 @@ public class Robot {
         }
     }
 
-    private void navigateBFS(Maze maze) {
-        String result = "";
+    private void navigateDFS(Maze maze) {
+        // Push the initial position to the stack
+        Stack stack = new Stack();
+        stack.push(pos);
 
-        Queue queue = new Queue();
-        queue.enqueue(pos);
+        // Mark the initial position as visited
+        visited[pos.getX()][pos.getY()] = true;
 
-        while (!queue.isEmpty() && !result.equals("win")) {
-            Position currentPos = queue.dequeue();
+        // Keep track of maze's result of the robot's movement
+        String result;
 
-            for (Direction dir : Direction.values()) {
-                Position nextPos = (new Position(currentPos)).move(dir);
-                String dirStr = DirectionHelper.toString(dir);
+        // While the stack is not empty
+        while (!stack.isEmpty()) {
+            // Pop the top position from the stack
+            System.out.println("_______________________");
+            System.out.println("\nPre-pop");
+            stack.print();
+            Position position = stack.pop();
 
-                int newX = nextPos.getX() + MAX_SIZE;
-                int newY = nextPos.getY() + MAX_SIZE;
 
-                if (newX < 0 || newX >= BOUNDARY_LIMIT || newY < 0 || newY >= BOUNDARY_LIMIT)
+            System.out.println("\nPopped " + position);
+            System.out.println("\nPost-pop");
+            stack.print();
+
+            // For each direction
+            for (Direction direction : Direction.values()) {
+                // Get the next position
+                Position nextPosition = getNextPosition(position, direction);
+
+                boolean reachable = canReach(nextPosition);
+
+                // Attempt to move to the next position
+                String dir = DirectionHelper.toString(direction);
+                result = maze.go(dir);
+
+                // If the result is "win", then we have found the exit
+                if (result.equals("win")) {
+                    // Mark the next position as visited
+                    visited[nextPosition.getX()][nextPosition.getY()] = true;
+
+                    // Save the previous position
+                    prev[nextPosition.getX()][nextPosition.getY()] = position;
+
+                    // Save the optimal path
+                    saveOptimalPath(nextPosition);
+                    return;
+                }
+
+                // If the result is "false", then we cannot move to the next position
+                if (result.equals("false")) {
+//                    System.out.println("ROBOT: Cannot move to " + nextPosition +"\n");
                     continue;
+                }
 
-                boolean visitedBefore = visited[newX][newY];
+                // If the next position has not been visited before
+                if (!visited[nextPosition.getX()][nextPosition.getY()]) {
+                    // Mark the next position as visited
+                    visited[nextPosition.getX()][nextPosition.getY()] = true;
 
-                if (visitedBefore) continue;
+                    // Save the previous position
+                    prev[nextPosition.getX()][nextPosition.getY()] = position;
 
-                result = maze.go(dirStr);
-                visited[newX][newY] = true;
+                    // Push the next position to the stack
+                    stack.push(nextPosition);
 
-                boolean isEnd = result.equals("win");
-
-                if (isEnd) break;
-
-                boolean cannotGo = result.equals("false");
-
-                if (cannotGo) continue;
-
-                queue.enqueue(nextPos);
-                prev[newX][newY] = currentPos;
+                    System.out.println("ROBOT: " + position + " -> " + direction + " -> " + nextPosition + '\n');
+                }
             }
         }
-
-        optimalPath = reconstructPath(prev, queue.peek());
     }
 
-    private Stack reconstructPath(Position[][] prev, Position endPos) {
-        Stack path = new Stack();
-        Node currentNode = new Node(endPos);
+    // Get the next position given the current position and the direction
+    private Position getNextPosition(Position position, Direction direction) {
+        return position.copyMove(direction);
+    }
 
-        while (!currentNode.getData().equals(pos)) {
-            Position currentPos = currentNode.getData();
+    // Check if the position is valid
+    private boolean isValidPosition(Position position) {
+        return position.getX() >= 0 && position.getX() < BOUNDARY_LIMIT
+                && position.getY() >= 0 && position.getY() < BOUNDARY_LIMIT;
+    }
 
-            int newX = currentPos.getX() + MAX_SIZE;
-            int newY = currentPos.getY() + MAX_SIZE;
+    // Check if the next position can be reached from the current position
+    private boolean canReach(Position nextPos) {
+        Direction direction = DirectionHelper.getDirection(pos, nextPos);
+        if (direction == null) return false;
+        var newPos = getNextPosition(pos, direction);
+        return newPos.getX() == nextPos.getX() && newPos.getY() == nextPos.getY();
+    }
 
-            Position prevPos = prev[newX][newY];
-            Node prevNode = new Node(prevPos);
+    // Save the optimal path
+    private void saveOptimalPath(Position position) {
+        // Push the exit position to the stack
+        optimalPath.push(position);
 
-            path.push(prevNode);
-            currentNode = prevNode;
+        // While the position is not the initial position
+        while (!position.equals(pos)) {
+            // Get the previous position
+            position = prev[position.getX()][position.getY()];
+
+            // Push the previous position to the stack
+            optimalPath.push(position);
         }
-
-        return path;
     }
 
     public boolean[][] getVisited() {
@@ -161,7 +192,6 @@ public class Robot {
         for (int i = 0; i < BOUNDARY_LIMIT; i++) {
             for (int j = 0; j < BOUNDARY_LIMIT; j++) {
                 visited[i][j] = false;
-                distance[i][j] = 0;
                 prev[i][j] = null;
             }
         }

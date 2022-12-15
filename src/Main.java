@@ -15,12 +15,10 @@ public class Main {
         // Print the original maze
         MazeHelper.print(ENABLE_COLORS);
 
-        // * There are 4 algorithms to choose from:
+        // * There are 2 algorithms to choose from:
         // Uncomment the algorithm you want to use.
         // robot.navigate(Algorithm.BFS);
         // robot.navigate(Algorithm.DFS);
-        // robot.navigate(Algorithm.DIJKSTRA);
-        // robot.navigate(Algorithm.A_STAR);
 
         // By default, the robot will use the A_STAR algorithm
         robot.navigate();

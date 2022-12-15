@@ -80,7 +80,7 @@ public class MazeHelper {
 
     private static Maze populateOptimalPath(Maze maze, Robot robot) {
         Stack optimalPath = robot.getOptimalPath();
-        Node node = optimalPath.pop();
+        Position node = optimalPath.pop();
 
         int maxSize = robot.getMaxSize();
         int robotX = maze.robotX;
@@ -89,9 +89,9 @@ public class MazeHelper {
         var visited = robot.getVisited();
 
         // print all visited nodes
-        for (int i = 0; i < visited.length; i++) {
-            for (int j = 0; j < visited[i].length; j++) {
-                System.out.print(visited[i][j] ? "1" : "0");
+        for (boolean[] booleans : visited) {
+            for (boolean aBoolean : booleans) {
+                System.out.print((aBoolean ? "1" : "0") + " ");
             }
             System.out.println();
         }
@@ -130,6 +130,13 @@ public class MazeHelper {
     public static void print(boolean colorized) {
         System.out.println("Maze:");
         Maze maze = new Maze();
+
+        if (colorized) printColorized(maze);
+        else printDefault(maze);
+    }
+
+    public static void print(Maze maze, boolean colorized) {
+        System.out.println("Maze:");
 
         if (colorized) printColorized(maze);
         else printDefault(maze);

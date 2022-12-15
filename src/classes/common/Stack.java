@@ -9,10 +9,11 @@ public class Stack {
         size = 0;
     }
 
-    public void push(Node node) {
+    public void push(Position pos) {
         if (head == null) {
-            head = node;
+            head = new Node(pos);
         } else {
+            Node node = new Node(pos);
             node.setNext(head);
             head = node;
         }
@@ -20,7 +21,7 @@ public class Stack {
         size++;
     }
 
-    public Node pop() {
+    public Position pop() {
         if (head == null)
             return null;
 
@@ -28,7 +29,7 @@ public class Stack {
         head = head.getNext();
         size--;
 
-        return node;
+        return node.getData();
     }
 
     public int getSize() {

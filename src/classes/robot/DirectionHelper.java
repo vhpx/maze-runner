@@ -35,4 +35,13 @@ public class DirectionHelper {
 
         return null;
     }
+
+    public static Direction getOpposite(Direction dir) {
+        return switch (dir) {
+            case UP -> Direction.DOWN;
+            case DOWN -> Direction.UP;
+            case LEFT -> Direction.RIGHT;
+            case RIGHT -> Direction.LEFT;
+        };
+    }
 }

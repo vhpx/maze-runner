@@ -27,15 +27,17 @@ public class Position {
         return y;
     }
 
-    public Position move(Direction dir) {
+    public Position copyMove(Direction dir) {
+        Position pos = new Position(this);
+
         switch (dir) {
-            case UP -> y--;
-            case DOWN -> y++;
-            case LEFT -> x--;
-            case RIGHT -> x++;
+            case UP -> pos.y--;
+            case DOWN -> pos.y++;
+            case LEFT -> pos.x--;
+            case RIGHT -> pos.x++;
         }
 
-        return this;
+        return pos;
     }
 
     @Override

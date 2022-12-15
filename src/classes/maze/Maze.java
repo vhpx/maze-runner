@@ -74,24 +74,13 @@ public class Maze {
         int currentCol = robotX;
 
         switch (direction) {
-            case "UP":
-                currentRow--;
-                break;
-
-            case "DOWN":
-                currentRow++;
-                break;
-
-            case "LEFT":
-                currentCol--;
-                break;
-
-            case "RIGHT":
-                currentCol++;
-                break;
-
-            default:
+            case "UP" -> currentRow--;
+            case "DOWN" -> currentRow++;
+            case "LEFT" -> currentCol--;
+            case "RIGHT" -> currentCol++;
+            default -> {
                 return "false";
+            }
         }
 
         // Check if the robot has reached the exit gate
@@ -104,6 +93,11 @@ public class Maze {
         if (map[currentRow].charAt(currentCol) == '.') {
             return "false";
         }
+
+//        MazeHelper.print(this,true);
+
+        System.out.println("MAZE:  (" + robotX + ", " + robotY
+                + ")" + " -> " + direction + " -> " + "(" + currentCol + ", " + currentRow + ")");
 
         // Otherwise, move the robot
         robotY = currentRow;
