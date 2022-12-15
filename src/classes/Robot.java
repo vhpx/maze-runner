@@ -1,8 +1,11 @@
-enum Algorithm {
-    BFS, DFS, DIJKSTRA, A_STAR
-}
+package classes;
 
-public class OriginalRobot {
+import classes.common.Queue;
+import enums.Algorithm;
+import enums.Direction;
+import helpers.DirectionHelper;
+
+public class Robot {
     // Original robot position
     private final Position pos = Position.ORIGIN;
 
@@ -24,28 +27,27 @@ public class OriginalRobot {
     Position[][] prev = new Position[BOUNDARY_LIMIT][BOUNDARY_LIMIT];
 
     public void navigate() {
-        OriginalMaze maze = new OriginalMaze();
-        navigate(maze, Algorithm.BFS);
+        navigate(Algorithm.BFS);
     }
 
     public void navigate(Algorithm algorithm) {
         if (algorithm == null) {
-            System.out.println("Algorithm should not be null.");
+            System.out.println("classes.Algorithm should not be null.");
             return;
         }
 
-        OriginalMaze maze = new OriginalMaze();
+        Maze maze = new Maze();
         navigate(maze, algorithm);
     }
 
-    public void navigate(OriginalMaze maze, Algorithm algorithm) {
+    public void navigate(Maze maze, Algorithm algorithm) {
         if (maze == null) {
             System.out.println("Maze should not be null.");
             return;
         }
 
         if (algorithm == null) {
-            System.out.println("Algorithm should not be null.");
+            System.out.println("classes.Algorithm should not be null.");
             return;
         }
 
@@ -70,12 +72,12 @@ public class OriginalRobot {
                 break;
 
             default:
-                System.out.println("Algorithm not implemented.");
+                System.out.println("classes.Algorithm not implemented.");
                 break;
         }
     }
 
-    private void navigateBFS(OriginalMaze maze) {
+    private void navigateBFS(Maze maze) {
         String result = "";
 
         Queue queue = new Queue();
@@ -113,7 +115,7 @@ public class OriginalRobot {
         }
 
         int leastMoves = reconstructPath(prev, queue.peek());
-        System.out.println("The BFS Algorithm found a path of length " + leastMoves);
+        System.out.println("The BFS classes.Algorithm found a path of length " + leastMoves);
     }
 
     private int reconstructPath(Position[][] prev, Position endPos) {

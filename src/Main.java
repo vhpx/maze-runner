@@ -1,38 +1,35 @@
+import classes.Maze;
+import classes.Robot;
+import helpers.MazeHelper;
+
 public class Main {
     // Configure if the terminal should display colors or not
     // NOTE: Coloring might not be available on all terminals,
     // and it would take more time to process.
-    public static boolean COLORIZED = true;
-
-    // Configure test folder to use
-    public static String TEST_FOLDER = "./resources/tests/";
-    public static int TEST_CASES = 1000;
+    // If you are having trouble with colors, set this to false.
+    private final static boolean enableColors = true;
 
     public static void main(String[] args) {
-        Maze[] mazes = MazeIO.loadMazes();
+        Maze maze = new Maze();
+        Robot robot = new Robot();
 
-        Robot bfsRobot = new Robot();
-        Robot dfsRobot = new Robot();
+        // Print the original maze
+        MazeHelper.print(enableColors);
 
-        for (int i = 0; i < TEST_CASES; i++) {
-            // Load the current maze
-            Maze maze = mazes[i];
+        // * There are 4 algorithms to choose from:
+        // Uncomment the algorithm you want to use.
+        // robot.navigate(Algorithm.BFS);
+        // robot.navigate(Algorithm.DFS);
+        // robot.navigate(Algorithm.DIJKSTRA);
+        // robot.navigate(Algorithm.A_STAR);
 
-            // Place the robot in the maze
-            // and print the maze
-            maze.placeRobot(bfsRobot);
-            maze.placeRobot(dfsRobot);
+        // By default, the robot will use the A_STAR algorithm
+        robot.navigate();
 
-            // The robot will navigate the maze
-            // using the BFS algorithm
-            bfsRobot.navigate(maze, true);
+        // Print the maze with positions visited by the robot
+        MazeHelper.printCoverage(maze, robot, enableColors);
 
-            // The robot will navigate the maze
-            // using the DFS algorithm
-            dfsRobot.navigate(maze, false);
-
-            // Wait until the user presses enter
-            Utility.waitForKey();
-        }
+        // Print the maze with the optimal path
+        MazeHelper.printOptimal(maze, robot, enableColors);
     }
 }

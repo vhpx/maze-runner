@@ -1,3 +1,11 @@
+package helpers;
+
+import classes.Maze;
+import classes.Robot;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MazeHelper {
     // * Maze configurations
     // Special properties of the maze
@@ -10,7 +18,7 @@ public class MazeHelper {
 
     // Print the maze without colors
     private static void printDefault() {
-        OriginalMaze mazeCopy = new OriginalMaze();
+        Maze mazeCopy = new Maze();
 
         int robotX = mazeCopy.robotX;
         int robotY = mazeCopy.robotY;
@@ -24,8 +32,8 @@ public class MazeHelper {
     }
 
     // Print the maze without colors
-    private static void printDefault(OriginalMaze maze) {
-        OriginalMaze mazeCopy = new OriginalMaze();
+    private static void printDefault(Maze maze) {
+        Maze mazeCopy = new Maze();
 
         int robotX = maze.robotX;
         int robotY = maze.robotY;
@@ -40,7 +48,7 @@ public class MazeHelper {
 
     // Print the maze with colors
     private static void printColorized() {
-        OriginalMaze mazeCopy = new OriginalMaze();
+        Maze mazeCopy = new Maze();
 
         int robotX = mazeCopy.robotX;
         int robotY = mazeCopy.robotY;
@@ -51,8 +59,8 @@ public class MazeHelper {
         for (String row : mazeCopy.map) {
             for (char c : row.toCharArray()) {
                 switch (c) {
-                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
-                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case WALL_SYMBOL -> System.out.print(ColorHelper.RESET + c + ColorHelper.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(ColorHelper.RED + c + ColorHelper.RESET);
                     case VISITED_SYMBOL, OPTIMAL_PATH_SYMBOL -> System.out.print(PATH_SYMBOL);
                     default -> System.out.print(c);
                 }
@@ -61,8 +69,8 @@ public class MazeHelper {
         }
     }
 
-    private static void printColorized(OriginalMaze maze) {
-        OriginalMaze mazeCopy = new OriginalMaze();
+    private static void printColorized(Maze maze) {
+        Maze mazeCopy = new Maze();
 
         int robotX = maze.robotX;
         int robotY = maze.robotY;
@@ -73,8 +81,8 @@ public class MazeHelper {
         for (String row : mazeCopy.map) {
             for (char c : row.toCharArray()) {
                 switch (c) {
-                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
-                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case WALL_SYMBOL -> System.out.print(ColorHelper.RESET + c + ColorHelper.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(ColorHelper.RED + c + ColorHelper.RESET);
                     case VISITED_SYMBOL, OPTIMAL_PATH_SYMBOL -> System.out.print(PATH_SYMBOL);
                     default -> System.out.print(c);
                 }
@@ -83,7 +91,7 @@ public class MazeHelper {
         }
     }
 
-    private static void printCoverageDefault(OriginalMaze maze, OriginalRobot robot) {
+    private static void printCoverageDefault(Maze maze, Robot robot) {
         int robotX = maze.robotX;
         int robotY = maze.robotY;
 
@@ -95,15 +103,15 @@ public class MazeHelper {
         }
     }
 
-    private static void printCoverageColorized(OriginalMaze maze, OriginalRobot robot) {
+    private static void printCoverageColorized(Maze maze, Robot robot) {
         for (String row : maze.map) {
             for (char c : row.toCharArray()) {
                 switch (c) {
-                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
-                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
-                    case VISITED_SYMBOL -> System.out.print(TerminalColors.CYAN + c + TerminalColors.RESET);
+                    case WALL_SYMBOL -> System.out.print(ColorHelper.RESET + c + ColorHelper.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(ColorHelper.RED + c + ColorHelper.RESET);
+                    case VISITED_SYMBOL -> System.out.print(ColorHelper.CYAN + c + ColorHelper.RESET);
                     case OPTIMAL_PATH_SYMBOL ->
-                            System.out.print(TerminalColors.GREEN_BOLD_BRIGHT + c + TerminalColors.RESET);
+                            System.out.print(ColorHelper.GREEN_BOLD_BRIGHT + c + ColorHelper.RESET);
                     default -> System.out.print(c);
                 }
             }
@@ -111,15 +119,15 @@ public class MazeHelper {
         }
     }
 
-    private static void printOptimalDefault(OriginalMaze maze) {
+    private static void printOptimalDefault(Maze maze) {
         for (String row : maze.map) {
             for (char c : row.toCharArray()) {
                 switch (c) {
-                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
-                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case WALL_SYMBOL -> System.out.print(ColorHelper.RESET + c + ColorHelper.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(ColorHelper.RED + c + ColorHelper.RESET);
                     case VISITED_SYMBOL -> System.out.print(PATH_SYMBOL);
                     case OPTIMAL_PATH_SYMBOL ->
-                            System.out.print(TerminalColors.GREEN_BOLD_BRIGHT + c + TerminalColors.RESET);
+                            System.out.print(ColorHelper.GREEN_BOLD_BRIGHT + c + ColorHelper.RESET);
                     default -> System.out.print(c);
                 }
             }
@@ -127,15 +135,15 @@ public class MazeHelper {
         }
     }
 
-    private static void printOptimalColorized(OriginalMaze maze) {
+    private static void printOptimalColorized(Maze maze) {
         for (String row : maze.map) {
             for (char c : row.toCharArray()) {
                 switch (c) {
-                    case WALL_SYMBOL -> System.out.print(TerminalColors.RESET + c + TerminalColors.RESET);
-                    case START_SYMBOL, END_SYMBOL -> System.out.print(TerminalColors.RED + c + TerminalColors.RESET);
+                    case WALL_SYMBOL -> System.out.print(ColorHelper.RESET + c + ColorHelper.RESET);
+                    case START_SYMBOL, END_SYMBOL -> System.out.print(ColorHelper.RED + c + ColorHelper.RESET);
                     case VISITED_SYMBOL -> System.out.print(PATH_SYMBOL);
                     case OPTIMAL_PATH_SYMBOL ->
-                            System.out.print(TerminalColors.GREEN_BOLD_BRIGHT + c + TerminalColors.RESET);
+                            System.out.print(ColorHelper.GREEN_BOLD_BRIGHT + c + ColorHelper.RESET);
                     default -> System.out.print(c);
                 }
             }
@@ -144,7 +152,7 @@ public class MazeHelper {
     }
 
     // Print the maze
-    protected static void print(boolean colorized) {
+    public static void print(boolean colorized) {
         System.out.println("Maze:");
 
         if (colorized)
@@ -154,7 +162,7 @@ public class MazeHelper {
     }
 
     // Print the maze
-    protected static void print(OriginalMaze maze,boolean colorized) {
+    protected static void print(Maze maze, boolean colorized) {
         System.out.println("Maze:");
 
         if (colorized)
@@ -164,7 +172,7 @@ public class MazeHelper {
     }
 
     // Print the maze with coverage
-    protected static void printCoverage(OriginalMaze maze, OriginalRobot robot, boolean colorized) {
+    public static void printCoverage(Maze maze, Robot robot, boolean colorized) {
         System.out.println("Maze with coverage:");
 
         if (colorized)
@@ -174,7 +182,7 @@ public class MazeHelper {
     }
 
     // Print the maze with optimal path
-    protected static void printOptimal(OriginalMaze maze, OriginalRobot robot, boolean colorized) {
+    public static void printOptimal(Maze maze, Robot robot, boolean colorized) {
         System.out.println("Maze with optimal path:");
 
         if (colorized)

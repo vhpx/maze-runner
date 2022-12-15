@@ -1,19 +1,21 @@
-public class OriginalMaze {
+package classes;
+
+public class Maze {
     // Maze dimensions
     int rows;
 
     // Robot position
-    int robotX;
-    int robotY;
+    public int robotX;
+    public int robotY;
 
     // Number of steps taken by the robot
     int steps = 0;
 
     // The maze is represented as a 2D array of Strings
     // Each string is a row of the maze
-    String[] map;
+    public String[] map;
 
-    public OriginalMaze() {
+    public Maze() {
         // rows = 21;
         rows = 7;
 
@@ -108,34 +110,5 @@ public class OriginalMaze {
         robotX = currentCol;
 
         return "true";
-    }
-
-    // Enable colors when printing the maze
-    // NOTE: This may not work on all systems.
-    // If you are having trouble with colors, set this to false.
-    private final static boolean enableColors = true;
-
-    public static void main(String[] args) {
-        OriginalMaze maze = new OriginalMaze();
-        OriginalRobot robot = new OriginalRobot();
-
-        // Print the original maze
-        MazeHelper.print(enableColors);
-
-        // * There are 4 algorithms to choose from:
-        // Uncomment the algorithm you want to use.
-        // robot.navigate(Algorithm.BFS);
-        // robot.navigate(Algorithm.DFS);
-        // robot.navigate(Algorithm.DIJKSTRA);
-        // robot.navigate(Algorithm.A_STAR);
-
-        // By default, the robot will use the A_STAR algorithm
-        robot.navigate();
-
-        // Print the maze with positions visited by the robot
-        MazeHelper.printCoverage(maze, robot, enableColors);
-
-        // Print the maze with the optimal path
-        MazeHelper.printOptimal(maze, robot, enableColors);
     }
 }

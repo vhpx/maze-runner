@@ -1,6 +1,6 @@
-enum Direction {
-    UP, DOWN, LEFT, RIGHT
-}
+package classes;
+
+import enums.Direction;
 
 public class Position {
     public static final Position ORIGIN = new Position(0, 0);

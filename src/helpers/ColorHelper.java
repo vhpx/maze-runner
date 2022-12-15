@@ -1,9 +1,9 @@
-// Referenced from
+package helpers;// Referenced from
 // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 
 // DISCLAIMER: This code snippet is only used for appearance purposes,
 // it does not affect the functionality of the program.
-public class TerminalColors {
+public class ColorHelper {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
 
