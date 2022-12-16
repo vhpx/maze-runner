@@ -1,12 +1,17 @@
 package classes.maze;
 
+import classes.common.Position;
+
 public class Maze {
     // Maze dimensions
     int rows;
 
+    private final int startX;
+    private final int startY;
+
     // Robot position
-    int robotX;
-    int robotY;
+    private int robotX;
+    private int robotY;
 
     // Number of steps taken by the robot
     int steps = 0;
@@ -18,6 +23,10 @@ public class Maze {
     public Maze() {
         // rows = 21;
         rows = 7;
+
+        // Only for printing purposes
+        startX = 4;
+        startY = 1;
 
         robotX = 4;
         robotY = 1;
@@ -84,25 +93,21 @@ public class Maze {
         }
 
         // Check if the robot has reached the exit gate
-        if (map[currentRow].charAt(currentCol) == 'X') {
-            System.out.println("Steps to reach the Exit gate: " + steps);
+        if (map[currentRow].charAt(currentCol) == 'X')
             return "win";
-        }
 
         // Check if the robot has hit a wall
-        if (map[currentRow].charAt(currentCol) == '.') {
+        if (map[currentRow].charAt(currentCol) == '.')
             return "false";
-        }
-
-//        MazeHelper.print(this,true);
-
-        System.out.println("MAZE:  (" + robotX + ", " + robotY
-                + ")" + " -> " + direction + " -> " + "(" + currentCol + ", " + currentRow + ")");
 
         // Otherwise, move the robot
         robotY = currentRow;
         robotX = currentCol;
 
         return "true";
+    }
+
+    public Position getStartPosition() {
+        return new Position(startX, startY);
     }
 }

@@ -1,23 +1,20 @@
 package classes.common;
 
-public class LinkedList {
-    private Node head;
-    private Node tail;
-    private int size;
+public class LinkedList<T> {
+    private Node<T> head;
+    private int size = 0;
 
     public LinkedList() {
         head = null;
-        tail = null;
-        size = 0;
     }
 
-    public void addFirst(Node node) {
+    public void addFirst(T node) {
         if (head == null) {
-            head = node;
-            tail = node;
+            head = new Node<T>(node);
         } else {
-            node.setNext(head);
-            head = node;
+            Node<T> newNode = new Node<T>(node);
+            newNode.setNext(head);
+            head = newNode;
         }
 
         size++;
@@ -27,24 +24,15 @@ public class LinkedList {
         return size;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+    public T get(int index) {
+        if (index < 0 || index >= size)
+            return null;
 
-    public void clear() {
-        head = null;
-        tail = null;
-        size = 0;
-    }
-
-    public void print() {
-        Node node = head;
-
-        while (node != null) {
-            System.out.print(node.getData() + " ");
+        Node<T> node = head;
+        for (int i = 0; i < index; i++) {
             node = node.getNext();
         }
 
-        System.out.println();
+        return node.getData();
     }
 }

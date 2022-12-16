@@ -4,6 +4,7 @@ import enums.Direction;
 
 public class Position {
     private int x, y;
+    private Direction lastDirection = null;
 
     public Position(int x, int y) {
         this.x = x;
@@ -13,10 +14,7 @@ public class Position {
     public Position(Position pos) {
         this.x = pos.x;
         this.y = pos.y;
-    }
-
-    public static Position copy(Position pos) {
-        return new Position(pos);
+        this.lastDirection = pos.lastDirection;
     }
 
     public int getX() {
@@ -27,8 +25,26 @@ public class Position {
         return y;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Direction getLastDirection() {
+        return lastDirection;
+    }
+
+    // Get the next position given the current position and the direction
+    public static Position getNext(Position pos, Direction dir) {
+        return pos.copyMove(dir);
+    }
+
     public Position copyMove(Direction dir) {
         Position pos = new Position(this);
+        pos.lastDirection = dir;
 
         switch (dir) {
             case UP -> pos.y--;
@@ -36,6 +52,7 @@ public class Position {
             case LEFT -> pos.x--;
             case RIGHT -> pos.x++;
         }
+
 
         return pos;
     }

@@ -1,7 +1,7 @@
 package classes.common;
 
-public class Stack {
-    private Node head;
+public class Stack<T> {
+    private Node<T> head;
     private int size;
 
     public Stack() {
@@ -9,11 +9,18 @@ public class Stack {
         size = 0;
     }
 
-    public void push(Position pos) {
+    public T peek() {
+        if (head == null)
+            return null;
+
+        return head.getData();
+    }
+
+    public void push(T pos) {
         if (head == null) {
-            head = new Node(pos);
+            head = new Node<T>(pos);
         } else {
-            Node node = new Node(pos);
+            Node<T> node = new Node<T>(pos);
             node.setNext(head);
             head = node;
         }
@@ -21,38 +28,18 @@ public class Stack {
         size++;
     }
 
-    public Position pop() {
+    public T pop() {
         if (head == null)
             return null;
 
-        Node node = head;
+        Node<T> node = head;
         head = head.getNext();
         size--;
 
         return node.getData();
     }
 
-    public int getSize() {
-        return size;
-    }
-
     public boolean isEmpty() {
         return size == 0;
-    }
-
-    public void clear() {
-        head = null;
-        size = 0;
-    }
-
-    public void print() {
-        Node node = head;
-
-        while (node != null) {
-            System.out.print(node.getData() + " ");
-            node = node.getNext();
-        }
-
-        System.out.println();
     }
 }

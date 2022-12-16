@@ -1,47 +1,33 @@
 package classes.robot;
-
 import enums.Direction;
-import classes.common.Position;
 
 public class DirectionHelper {
-    public static String toString(Direction dir) {
+    public static Direction toDirection(String dir) {
         if (dir == null)
-            return "null";
+            return null;
 
         return switch (dir) {
-            case UP -> "UP";
-            case DOWN -> "DOWN";
-            case LEFT -> "LEFT";
-            case RIGHT -> "RIGHT";
+            case "UP" -> Direction.UP;
+            case "DOWN" -> Direction.DOWN;
+            case "LEFT" -> Direction.LEFT;
+            case "RIGHT" -> Direction.RIGHT;
+            default -> null;
         };
     }
 
-    public static Direction getDirection(Position a, Position b) {
-        if (a.getX() == b.getX()) {
-            if (a.getY() < b.getY())
-                return Direction.DOWN;
-
-            if (a.getY() > b.getY())
-                return Direction.UP;
-        }
-
-        if (a.getY() == b.getY()) {
-            if (a.getX() < b.getX())
-                return Direction.RIGHT;
-
-            if (a.getX() > b.getX())
-                return Direction.LEFT;
-        }
-
-        return null;
-    }
-
     public static Direction getOpposite(Direction dir) {
+        if (dir == null)
+            return null;
+
         return switch (dir) {
             case UP -> Direction.DOWN;
             case DOWN -> Direction.UP;
             case LEFT -> Direction.RIGHT;
             case RIGHT -> Direction.LEFT;
         };
+    }
+
+    public static String getOpposite(String dir) {
+        return getOpposite(toDirection(dir)).toString();
     }
 }
