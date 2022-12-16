@@ -1,7 +1,3 @@
-package classes.maze;
-
-import classes.common.Position;
-
 public class Maze {
     // Maze dimensions
     int rows;
@@ -109,5 +105,9 @@ public class Maze {
 
     public Position getStartPosition() {
         return new Position(startX, startY);
+    }
+
+    public static void main(String[] args) {
+        (new Robot()).navigate();
     }
 }

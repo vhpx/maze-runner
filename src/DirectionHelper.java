@@ -1,6 +1,3 @@
-package classes.robot;
-import enums.Direction;
-
 public class DirectionHelper {
     public static Direction toDirection(String dir) {
         if (dir == null)

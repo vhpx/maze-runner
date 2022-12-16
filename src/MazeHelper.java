@@ -1,8 +1,3 @@
-package classes.maze;
-
-import classes.common.Position;
-import classes.robot.Robot;
-
 public class MazeHelper {
     // * Maze configurations
     // Special properties of the maze

@@ -1,5 +1,3 @@
-package classes.common;
-
 public class Stack<T> {
     private Node<T> head;
     private int size;

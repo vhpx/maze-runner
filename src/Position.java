@@ -1,7 +1,3 @@
-package classes.common;
-
-import enums.Direction;
-
 public class Position {
     private int x, y;
     private Direction lastDirection = null;

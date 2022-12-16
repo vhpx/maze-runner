@@ -1,12 +1,3 @@
-package classes.robot;
-
-import classes.common.LinkedList;
-import classes.common.Stack;
-import classes.maze.Maze;
-import classes.common.Position;
-import classes.maze.MazeHelper;
-import enums.Direction;
-
 public class Robot {
     // Configure if the terminal should display colors or not
     // NOTE: Coloring might not be available on all terminals,
