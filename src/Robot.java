@@ -8,7 +8,7 @@ public class Robot {
     // ------------- ROBOT CONFIGURATIONS -------------
 
     // Maximum size of the maze (width or height)
-    private final int MAX_SIZE = 7;
+    private final int MAX_SIZE = 1000;
 
     // Boundary for each row, taking into account the walls,
     // and MAX_SIZE to navigate in any direction.
@@ -47,18 +47,6 @@ public class Robot {
     private boolean isNextPosWall(Position pos, Direction dir) {
         Position nextPos = Position.getNext(pos, dir);
         return isOutOfBounds(nextPos) || isWall(nextPos);
-    }
-
-    public char[][] getVisited() {
-        return visited;
-    }
-
-    public int getMaxSize() {
-        return MAX_SIZE;
-    }
-
-    public Position getCenterPos() {
-        return centerPos;
     }
 
     private void clearData() {
@@ -103,21 +91,25 @@ public class Robot {
 
     private void goBack(Maze maze, Stack<Position> path) {
         // If the stack is empty, stop
-        if (path.isEmpty()) return;
+        if (path.isEmpty())
+            return;
 
         // Get the direction to go back
         Position lastPos = path.pop();
         Direction dir = lastPos.getLastDirection();
 
         // If direction is null, stop
-        if (dir == null) return;
+        if (dir == null)
+            return;
 
         // If the position is a wall, stop
-        if (isWall(lastPos)) return;
+        if (isWall(lastPos))
+            return;
 
         // If the way back is a wall, stop
         Direction oppositeDir = DirectionHelper.getOpposite(dir);
-        if (isNextPosWall(lastPos, oppositeDir)) return;
+        if (isNextPosWall(lastPos, oppositeDir))
+            return;
 
         // Go back to the last position
         maze.go(oppositeDir.toString());
@@ -162,9 +154,5 @@ public class Robot {
                 goBack(maze, path);
             }
         }
-
-        // Print the path
-        System.out.println("\nPath: ");
-        MazeHelper.printPath(maze, this, ENABLE_COLORS);
     }
 }

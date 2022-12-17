@@ -16,9 +16,9 @@ public class Stack<T> {
 
     public void push(T pos) {
         if (head == null) {
-            head = new Node<T>(pos);
+            head = new Node<>(pos);
         } else {
-            Node<T> node = new Node<T>(pos);
+            Node<T> node = new Node<>(pos);
             node.setNext(head);
             head = node;
         }

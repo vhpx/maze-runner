@@ -44,73 +44,11 @@ public class MazeHelper {
         }
     }
 
-    private static void offsetPosition(Position pos, Robot robot, Maze maze) {
-        Position robotMapOGPos = robot.getCenterPos();
-        Position mazeMapOGPos = maze.getStartPosition();
-
-        int robotX = robotMapOGPos.getX();
-        int robotY = robotMapOGPos.getY();
-
-        int mazeX = mazeMapOGPos.getX();
-        int mazeY = mazeMapOGPos.getY();
-
-        int xDiff = mazeX - robotX;
-        int yDiff = mazeY - robotY;
-
-        pos.setX(pos.getX() + (xDiff < 0 ? xDiff * -1 : xDiff));
-        pos.setY(pos.getY() + (yDiff < 0 ? yDiff * -1 : yDiff));
-    }
-
-    private static Maze populatePath(Maze maze, Robot robot) {
-        Maze markedMaze = markStart(maze);
-        var directions = robot.directions;
-
-        Position pos = markedMaze.getStartPosition();
-
-        for (int i = 0; i < directions.getSize(); i++) {
-            Position nextPos = Position.getNext(pos, directions.get(i));
-            offsetPosition(nextPos, robot, maze);
-
-            int x = nextPos.getX();
-            int y = nextPos.getY();
-
-            if (i == directions.getSize() - 1) {
-                markedMaze.map[y] = markedMaze.map[y].substring(0, x) + END_SYMBOL +
-                        markedMaze.map[y].substring(x + 1);
-            } else {
-                markedMaze.map[y] = markedMaze.map[y].substring(0, x) + OPTIMAL_PATH_SYMBOL +
-                        markedMaze.map[y].substring(x + 1);
-            }
-        }
-
-        return markedMaze;
-    }
-
-    private static void printPathDefault(Maze maze, Robot robot) {
-        Maze optimalMaze = populatePath(maze, robot);
-        printDefault(optimalMaze);
-    }
-
-    private static void printPathColorized(Maze maze, Robot robot) {
-        Maze optimalMaze = populatePath(maze, robot);
-        printColorized(optimalMaze);
-    }
-
     public static void print(Maze maze, boolean colorized) {
         if (colorized)
             printColorized(maze);
         else
             printDefault(maze);
-
-        System.out.println();
-    }
-
-    // Print the maze with optimal path
-    public static void printPath(Maze maze, Robot robot, boolean colorized) {
-        if (colorized)
-            printPathColorized(maze, robot);
-        else
-            printPathDefault(maze, robot);
 
         System.out.println();
     }

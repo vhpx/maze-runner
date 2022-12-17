@@ -8,9 +8,9 @@ public class LinkedList<T> {
 
     public void addFirst(T node) {
         if (head == null) {
-            head = new Node<T>(node);
+            head = new Node<>(node);
         } else {
-            Node<T> newNode = new Node<T>(node);
+            Node<T> newNode = new Node<>(node);
             newNode.setNext(head);
             head = newNode;
         }
@@ -20,17 +20,5 @@ public class LinkedList<T> {
 
     public int getSize() {
         return size;
-    }
-
-    public T get(int index) {
-        if (index < 0 || index >= size)
-            return null;
-
-        Node<T> node = head;
-        for (int i = 0; i < index; i++) {
-            node = node.getNext();
-        }
-
-        return node.getData();
     }
 }
