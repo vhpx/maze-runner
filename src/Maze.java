@@ -18,31 +18,53 @@ public class Maze {
 
     public Maze() {
 //        TEST 1
-        rows = 7;
+//        rows = 7;
+//
+//        robotX = 4;
+//        robotY = 1;
+//
+//        startX = robotX;
+//        startY = robotY;
+//
+//        map = new String[rows];
+//        map[0] = ".......";
+//        map[1] = ". .   .";
+//        map[2] = ". ... .";
+//        map[3] = ".X    .";
+//        map[4] = ". . ...";
+//        map[5] = ".     .";
+//        map[6] = ".......";
 
-        robotX = 4;
+        // TEST 2
+        rows = 16;
+
+        robotX = 38;
         robotY = 1;
 
         startX = robotX;
         startY = robotY;
 
         map = new String[rows];
-        map[0] = ".......";
-        map[1] = ".X.   .";
-        map[2] = ". ... .";
-        map[3] = ".     .";
-        map[4] = ". . ...";
-        map[5] = ".     .";
-        map[6] = ".......";
+        map[0] = "........................................";
+        map[1] = ".    .          ...             ..     .";
+        map[2] = ". .    .            .. . ..    .   .....";
+        map[3] = ".   . .       .  .    .       ..    .  .";
+        map[4] = ".     ..   ..    .           .         .";
+        map[5] = ".  .                .        .  .      .";
+        map[6] = "..              .   .          .       .";
+        map[7] = "..      .      .  .                 X. .";
+        map[8] = ".                 .               .    .";
+        map[9] = ".    .                     . .  .     ..";
+        map[10] =".  .    .   .                      . . .";
+        map[11] =".   .       .        ....       .  .   .";
+        map[12] =".    . .  .             .         .  . .";
+        map[13] =". .  . . ..    ..                     ..";
+        map[14] =".  . .                         .    .  .";
+        map[15] ="........................................";
 
-//        TEST 2
+//        TEST 3
 //        rows = 28;
-
-//        TEST 2.1
-//        robotX = 110;
-//        robotY = 22;
 //
-//        TEST 2.2
 //        robotX = 90;
 //        robotY = 18;
 //
@@ -98,7 +120,7 @@ public class Maze {
 
         // Check if the robot has reached the exit gate
         if (map[currentRow].charAt(currentCol) == 'X') {
-            System.out.println("You won in " + steps + " steps!");
+            System.out.println("Steps to reach the exit gate: " + steps );
             return "win";
         }
 
