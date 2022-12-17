@@ -67,6 +67,7 @@ public class Robot {
 
                 // If the robot has reached the exit, stop
                 if (result.equals("win")) {
+                    System.out.println("The last move before reaching the exit is " + dir);
                     return "win";
                 }
 
