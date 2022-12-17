@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32b15225-65df-4cbc-ade6-ae9782cf4177" name="Changes" comment="">
+    <list default="true" id="32b15225-65df-4cbc-ade6-ae9782cf4177" name="Changes" comment="Add new test case for robot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/tests/maze_8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/tests/maze_8.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Maze.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +77,14 @@
       <workItem from="1671290307183" duration="1637000" />
       <workItem from="1671292182572" duration="310000" />
     </task>
+    <task id="LOCAL-00001" summary="Add new test case for robot">
+      <created>1671299592176</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671299592176</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,5 +103,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Add new test case for robot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new test case for robot" />
   </component>
 </project>
