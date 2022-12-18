@@ -81,7 +81,7 @@ public class Robot {
 
                 // If the robot has reached the exit, stop
                 if (result.equals("win")) {
-                    directions.addFirst(dir);
+                    directions.addLast(dir);
                     System.out.println("The last move before reaching the exit is " + dir);
                     return "win";
                 }
@@ -92,7 +92,7 @@ public class Robot {
                     path.push(nextPos);
                     markPath(nextPos);
 
-                    directions.addFirst(dir);
+                    directions.addLast(dir);
                     System.out.println(dir);
                     return "true";
                 }
@@ -170,5 +170,7 @@ public class Robot {
                 goBack(maze, path);
             }
         }
+
+        System.out.println("Directions: " + directions);
     }
 }

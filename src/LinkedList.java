@@ -6,13 +6,15 @@ public class LinkedList<T> {
         head = null;
     }
 
-    public void addFirst(T node) {
+    public void addLast(T data) {
         if (head == null) {
-            head = new Node<>(node);
+            head = new Node<>(data);
         } else {
-            Node<T> newNode = new Node<>(node);
-            newNode.setNext(head);
-            head = newNode;
+            Node<T> node = head;
+            while (node.next != null) {
+                node = node.next;
+            }
+            node.next = new Node<>(data);
         }
 
         size++;
@@ -20,5 +22,16 @@ public class LinkedList<T> {
 
     public int getSize() {
         return size;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node<T> current = head;
+        while (current != null) {
+            sb.append(current.data).append(" ");
+            current = current.next;
+        }
+        return sb.toString();
     }
 }

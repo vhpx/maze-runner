@@ -11,7 +11,7 @@ public class Stack<T> {
         if (head == null)
             return null;
 
-        return head.getData();
+        return head.data;
     }
 
     public void push(T pos) {
@@ -19,7 +19,7 @@ public class Stack<T> {
             head = new Node<>(pos);
         } else {
             Node<T> node = new Node<>(pos);
-            node.setNext(head);
+            node.next = head;
             head = node;
         }
 
@@ -31,10 +31,10 @@ public class Stack<T> {
             return null;
 
         Node<T> node = head;
-        head = head.getNext();
+        head = head.next;
         size--;
 
-        return node.getData();
+        return node.data;
     }
 
     public boolean isEmpty() {
