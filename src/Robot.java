@@ -171,6 +171,7 @@ public class Robot {
             }
         }
 
-        System.out.println("Directions: " + directions);
+        // Print the directions to the exit on a line.
+        // System.out.println("Directions: " + directions);
     }
 }

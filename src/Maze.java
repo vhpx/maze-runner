@@ -52,8 +52,10 @@ public class Maze {
         }
 
         // Check if the robot has hit a wall
-        if (map[currentRow].charAt(currentCol) == '.')
+        if (map[currentRow].charAt(currentCol) == '.') {
+            // System.out.println("Hit a wall at (" + currentRow + ", " + currentCol + ")");
             return "false";
+        }
 
         // Otherwise, move the robot
         robotRow = currentRow;
