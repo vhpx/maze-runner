@@ -47,7 +47,7 @@ public class Maze {
 
         // Check if the robot has reached the exit gate
         if (map[currentRow].charAt(currentCol) == 'X') {
-            System.out.println("You won in " + steps + " steps!");
+            System.out.println("Steps to reach the exit gate: " + steps);
             return "win";
         }
 
