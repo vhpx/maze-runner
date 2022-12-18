@@ -9,10 +9,8 @@ public class MazeHelper {
     private static final char OPTIMAL_PATH_SYMBOL = 'x';
 
     private static Maze markStart(Maze maze) {
-        Position start = maze.getStartPosition();
-
-        int robotX = start.getX();
-        int robotY = start.getY();
+        int robotX = maze.robotCol;
+        int robotY = maze.robotRow;
 
         maze.map[robotY] = maze.map[robotY].substring(0, robotX) + START_SYMBOL +
                 maze.map[robotY].substring(robotX + 1);

@@ -2,12 +2,9 @@ public class Maze {
     // Maze dimensions
     int rows;
 
-    private final int startX;
-    private final int startY;
-
     // Robot position
-    private int robotX;
-    private int robotY;
+    int robotRow;
+    int robotCol;
 
     // Number of steps taken by the robot
     int steps = 0;
@@ -17,14 +14,10 @@ public class Maze {
     String[] map;
 
     public Maze() {
-//        TEST 1
         rows = 7;
 
-        robotX = 4;
-        robotY = 1;
-
-        startX = robotX;
-        startY = robotY;
+        robotCol = 4;
+        robotRow = 1;
 
         map = new String[rows];
         map[0] = ".......";
@@ -34,57 +27,13 @@ public class Maze {
         map[4] = ". . ...";
         map[5] = ".     .";
         map[6] = ".......";
-
-//        TEST 2
-//        rows = 28;
-
-//        TEST 2.1
-//        robotX = 110;
-//        robotY = 22;
-//
-//        TEST 2.2
-//        robotX = 90;
-//        robotY = 18;
-//
-//        startX = robotX;
-//        startY = robotY;
-//
-//        map = new String[rows];
-//        map[0] = "..........................................................................................................................";
-//        map[1] = ".   .               .           ...     .    .            .       .   ..     .       .    .                   . ..   .   .";
-//        map[2] = "..    .. .      .  . .  .    .    .     .. .                   .   .          .. . .  ..               .                 .";
-//        map[3] = ".               .. ...   .   .    . ..  .  .      ..       .       .                       .  .    .                   . .";
-//        map[4] = ".        .  .        .. .    .. .         . .     .   .  .      .   . ..        .  .       .  ..                 .  . .. .";
-//        map[5] = ".    .      . . .        .   .  ..         .      .        .   .    .        .             . .  .  . .   .     ..     .  .";
-//        map[6] = ".   . .  .                   .        ..    .    .  . . .        .               .    . ..   .      . .         ..      ..";
-//        map[7] = ".  .   .          .                .      .    .   .           .    . .       .   .           .  .. .               .    .";
-//        map[8] = "...  .    ... ..    .    ... ..  .    .      .        ..  .  .               .  .        . .                ..   .  .    .";
-//        map[9] = "...      .   .         .  .     ..    .  .  ..   .   .    .   .         .    .       .       . . ..           .. .       .";
-//        map[10] = ".          .   .    .                        .    .    . .   .  . .  .         ... .            .  .             .       .";
-//        map[11] = ".   .    .    .   . .               ..    .     .  .  . ..                 .  .  . .     . .       ....             . .. .";
-//        map[12] = ". .    .           .   .  .    ...  .  .   .    .  .     .    ..                .                    ... .. .         .  .";
-//        map[13] = ".   .     ...      .  .             .   .   .. .  .       .                  . .      .    ..  .              .      .   .";
-//        map[14] = "...                   .        .           .  ..               .  .  ..           .   . . .      ...         ...         .";
-//        map[15] = "..          .  .         .           .  .            .   .                  .     .                  .    ..  .   ...   ..";
-//        map[16] = ".        ..  .       . ...  .  .     ..              ..                . .   .          .. .           .             ..  .";
-//        map[17] = ". .     .       .   ..     .   . .      .                     .    .    .  .        .  ..    .  . .  .     .     .       .";
-//        map[18] = ". .              . . .         ..       .  .     .   .  .    .. .           ..      .            .          .   .        .";
-//        map[19] = "..  .      . .   ..     .                 .      .               .               .. .                                  ...";
-//        map[20] = ".    . .  ..   .     . ..   .    .         .   . ..                 ..  ..         .      .     .       .           ..   .";
-//        map[21] = ".   ... .         .  ..          ..      .        .              .         .      ...                       X . .        .";
-//        map[22] = ".  .   ..    .      .        .       .  .                      .  . .. .            . .   .       .    .      .   . . .  .";
-//        map[23] = "..  .       .            .       .  . .  ..                   .            .   .     .       .             .    .    .   .";
-//        map[24] = ".  .    .   ...          .     .  . ..             .     .   ..                                  .. .     ...        .   .";
-//        map[25] = ". .    .      .       .  . .             .  .         .     .     .   ..                    ..     .              .      .";
-//        map[26] = ".                        .. .           .  .       .  .    .        .   .        . ..               ..            .      .";
-//        map[27] = "..........................................................................................................................";
     }
 
     public String go(String direction) {
         steps++;
 
-        int currentRow = robotY;
-        int currentCol = robotX;
+        int currentRow = robotRow;
+        int currentCol = robotCol;
 
         switch (direction) {
             case "UP" -> currentRow--;
@@ -107,14 +56,10 @@ public class Maze {
             return "false";
 
         // Otherwise, move the robot
-        robotY = currentRow;
-        robotX = currentCol;
+        robotRow = currentRow;
+        robotCol = currentCol;
 
         return "true";
-    }
-
-    public Position getStartPosition() {
-        return new Position(startX, startY);
     }
 
     public static void main(String[] args) {
