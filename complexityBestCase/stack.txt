@@ -1,0 +1,41 @@
+
+                                                            Cost                    Occurrence (best case)
+
+public T peek() {                                                                        
+    if (head == null)                                       C1                             1
+        return null;                                        C2                             1
+
+    return head.data;                                       C3                             1
+}
+Total cost: C1*1 + C2*1 + C3*1
+Time complexity: O(1)
+
+
+public void push(T pos) {                                                                 
+    if (head == null) {                                     C1                             1
+        head = new Node<>(pos);                             C2                             1
+    } else {                                                
+        Node<T> node = new Node<>(pos);                     C3                             1
+        node.next = head;                                   C4                             1
+        head = node;                                        C5                             1
+    }                                                       
+
+    size++;                                                 C9                              1
+}    
+Total cost: C1*1 + C2*1 + C3*N + C4*N + C5*(N-1) + C9*1
+Time complexity: O(1)                                                       
+
+
+public T pop() {
+    if (head == null)                                       C1                             1
+        return null;                                        C2                             1
+
+    Node<T> node = head;                                    C3                             1
+    head = head.next;                                       C4                             1
+    size--;                                                 C5                             1
+
+    return node.data;                                       C6                             1
+}
+Total cost: C1*1 + C2*1 + C3*1 + C4*1 + C5*1 + C6*1
+Time complexity: O(1)
+

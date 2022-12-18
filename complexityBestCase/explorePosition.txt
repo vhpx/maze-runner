@@ -1,0 +1,40 @@
+private String explorePosition(Position pos, Maze maze, Stack<Position> path) {                          Cost            Occurrence (best case)     
+        String result;                                                                                    C1                      1
+
+        for (Direction dir : Direction.values()) {                                                        C2                      1
+            Position nextPos = Position.getNext(pos, dir);
+
+            // If the next position is not out of bounds, and it
+            // has not already been visited
+            if (!isOutOfBounds(nextPos) && !isVisited(nextPos) && !isWall(nextPos)) {                     C3                      1
+                // Attempt to move the robot to the next position
+                result = maze.go(dir.toString());                                                         C4                      1
+
+                // If the robot has reached the exit, stop
+                if (result.equals("win")) {                                                               C5                      1
+                    System.out.println("The last move before reaching the exit is " + dir);               C6                      1
+                    return "win";                                                                         C7                      1 
+                }
+
+                // If the robot moved to the next position,
+                // push it to the stack
+                if (result.equals("true")) {                                                              C8                      1
+                    path.push(nextPos);                                                                   C9                      1
+                    markPath(nextPos);                                                                    C10                     1
+
+                    System.out.println(dir);                                                              C11                     1
+                    return "true";                                                                        C12                     1                     
+                }
+
+                // If the robot hit a wall, mark it
+                markWall(nextPos);                                                                        C13                     1
+            }
+        }
+
+        return "false";                                                                                   C14                     1
+    }
+
+Total cost: C1*1 + C2*1 + C3*1 + C3*1 + C4*1 + C5*1 + C6*1 + C7*1 + C8*1 + C9*1 + C10*1 + C11*1 + C12*1 + C13*1 + C14*1
+Time complexity: O(1)
+
+Best case: The robot will reach the exit in the first move, so the time complexity will be O(1).
