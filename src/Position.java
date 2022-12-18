@@ -41,7 +41,6 @@ public class Position {
             case RIGHT -> pos.x++;
         }
 
-
         return pos;
     }
 

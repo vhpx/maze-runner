@@ -21,9 +21,6 @@ public class Robot {
     // Save visited cells to avoid revisiting them
     private char[][] visited = new char[BOUNDARY_LIMIT][BOUNDARY_LIMIT];
 
-    // Save the path to the destination
-    public LinkedList<Direction> directions = new LinkedList<>();
-
     public Robot() {
         // Initialize the visited array
         for (int i = 0; i < BOUNDARY_LIMIT; i++) {
@@ -31,10 +28,6 @@ public class Robot {
                 visited[i][j] = ' ';
             }
         }
-    }
-
-    public LinkedList<Direction> getDirections() {
-        return directions;
     }
 
     private boolean isOutOfBounds(Position pos) {
@@ -81,7 +74,6 @@ public class Robot {
 
                 // If the robot has reached the exit, stop
                 if (result.equals("win")) {
-                    directions.addLast(dir);
                     System.out.println("The last move before reaching the exit is " + dir);
                     return "win";
                 }
@@ -92,7 +84,6 @@ public class Robot {
                     path.push(nextPos);
                     markPath(nextPos);
 
-                    directions.addLast(dir);
                     System.out.println(dir);
                     return "true";
                 }
@@ -170,8 +161,5 @@ public class Robot {
                 goBack(maze, path);
             }
         }
-
-        // Print the directions to the exit on a line.
-        // System.out.println("Directions: " + directions);
     }
 }
