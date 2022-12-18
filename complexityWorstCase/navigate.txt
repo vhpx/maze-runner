@@ -1,0 +1,42 @@
+public void navigate() {                                                Cost                Occurrence (worst case)
+        // Clear data
+        clearData();                                                     C1                         1
+
+        // Generate the maze
+        Maze maze = new Maze();                                          C2                         1
+
+        // Print the original maze
+        System.out.println("\nMaze: ");                                  C3                         1
+        MazeHelper.print(maze, ENABLE_COLORS);                           C4                         1
+
+        System.out.println("\nDirections: ");                            C5                         1
+
+        // Push the initial position to the stack
+        Stack<Position> path = new Stack<>();                            C6                         1
+        path.push(centerPos);                                            C7                         1
+
+        // Mark the initial position as visited
+        markPath(centerPos);                                             C8                         1
+
+        // Store the result of the exploration
+        String result;                                                   C9                         1
+
+        // While the robot still has cells to visit
+        while (!path.isEmpty()) {                                        C10                       N+1
+            Position pos = path.peek();                                  C11                        N
+            result = explorePosition(pos, maze, path);                   C12                        N
+
+            if (result.equals("win")) {                                  C13                        N
+                // If the robot has reached the exit, stop
+                break;                                                   C14                        1
+            }
+
+            if (result.equals("false")) {                                C15                        N
+                // Move the robot back to the previous position
+                goBack(maze, path);                                      C16                        N
+            }
+        }
+}
+
+Total cost: C1*1 + C2*1 + C3*1 + C4*1 + C5*1 + C6*1 + C7*1 + C8*1 + C9*1 + C10*(N+1) + C11*N + C12*N + C13*N + C14*1 + C15*N + C16*N
+Time complexity: O(N)
