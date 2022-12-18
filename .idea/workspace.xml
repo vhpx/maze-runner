@@ -7,7 +7,6 @@
     <list default="true" id="32b15225-65df-4cbc-ade6-ae9782cf4177" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Robot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +86,7 @@
       <workItem from="1671290307183" duration="1637000" />
       <workItem from="1671292182572" duration="1729000" />
       <workItem from="1671323811020" duration="319000" />
-      <workItem from="1671326914081" duration="2228000" />
+      <workItem from="1671326914081" duration="5147000" />
     </task>
     <task id="LOCAL-00001" summary="Add new test case for robot">
       <created>1671299592176</created>

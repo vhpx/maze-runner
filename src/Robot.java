@@ -129,7 +129,7 @@ public class Robot {
 
         // Go back to the last position
         maze.go(oppositeDir.toString());
-
+        System.out.println(oppositeDir);
     }
 
     public void navigate() {
