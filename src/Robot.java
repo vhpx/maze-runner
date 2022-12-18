@@ -1,3 +1,4 @@
+
 public class Robot {
     // Configure if the terminal should display colors or not
     // NOTE: Coloring might not be available on all terminals,
@@ -22,6 +23,19 @@ public class Robot {
 
     // Save the path to the destination
     public LinkedList<Direction> directions = new LinkedList<>();
+
+    public Robot() {
+        // Initialize the visited array
+        for (int i = 0; i < BOUNDARY_LIMIT; i++) {
+            for (int j = 0; j < BOUNDARY_LIMIT; j++) {
+                visited[i][j] = ' ';
+            }
+        }
+    }
+
+    public LinkedList<Direction> getDirections() {
+        return directions;
+    }
 
     private boolean isOutOfBounds(Position pos) {
         return pos.getX() < 0 || pos.getX() >= BOUNDARY_LIMIT ||
@@ -67,6 +81,7 @@ public class Robot {
 
                 // If the robot has reached the exit, stop
                 if (result.equals("win")) {
+                    directions.addFirst(dir);
                     System.out.println("The last move before reaching the exit is " + dir);
                     return "win";
                 }
